@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Dr. Vismaya's Her & Little Wellness Centre | Homoeopathy in Neyyattinkara</title>
+<meta name="description" content="Dr. Vismaya V Nair (BHMS) offers gentle homoeopathic care for women, children and lifestyle diseases in Neyyattinkara, Thiruvananthapuram — in person and online.">
+<link rel="icon" type="image/jpeg" href="assets/favicon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal-deep:#0A3B45;
+    --teal:#0F6274;
+    --teal-soft:#E4EEEC;
+    --cream:#FAF7F1;
+    --rose:#C97B8A;
+    --ink:#1E2E30;
+    --cream-text:#F4F1EA;
+    --line: rgba(244,241,234,0.22);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    margin:0 0 0.4em;
+    font-weight:600;
+    line-height:1.15;
+  }
+  p{margin:0 0 1em;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  .script{
+    font-family:'Caveat',cursive;
+    font-weight:600;
+  }
+
+  /* ===== NAV ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--teal-deep);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:12px; padding-bottom:12px;
+  }
+  .brand{ display:flex; align-items:center; gap:16px; }
+  .brand img{ height:74px; width:74px; object-fit:cover; border-radius:50%; border:3px solid rgba(244,241,234,0.35); }
+  .brand-name{ color:var(--cream-text); font-family:'Fraunces',serif; font-size:1.3rem; line-height:1.2; }
+  .brand-name b{ display:block; font-size:1.5rem; }
+  .brand-name span{ font-size:1rem; opacity:1; letter-spacing:0.03em; }
+  .nav-links{ display:none; gap:28px; list-style:none; margin:0; padding:0; }
+  .nav-links a{ color:var(--cream-text); text-decoration:none; font-size:0.94rem; }
+  .nav-links a:hover{ color:var(--rose); }
+  .nav-cta{
+    display:none;
+    background:var(--rose); color:#fff; text-decoration:none;
+    padding:9px 18px; border-radius:30px; font-size:0.9rem; font-weight:500;
+    white-space:nowrap;
+  }
+  .menu-btn{
+    background:none; border:none; color:var(--cream-text); font-size:1.6rem;
+    cursor:pointer; line-height:1;
+  }
+  @media(min-width:860px){
+    .nav-links{ display:flex; }
+    .nav-cta{ display:inline-block; }
+    .menu-btn{ display:none; }
+    #mobileMenu{ display:none !important; }
+  }
+  #mobileMenu{
+    display:none; flex-direction:column; gap:2px;
+    background:var(--teal-deep); padding:0 24px 18px;
+    border-bottom:1px solid var(--line);
+  }
+  #mobileMenu.open{ display:flex; }
+  #mobileMenu a{
+    color:var(--cream-text); text-decoration:none; padding:10px 0;
+    border-top:1px solid var(--line); font-size:0.95rem;
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    background:var(--teal-deep);
+    color:var(--cream-text);
+    padding:56px 0 70px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid; grid-template-columns:1fr; gap:40px; align-items:center;
+  }
+  .hero-copy .kicker{
+    font-family:'Caveat',cursive; font-size:1.5rem; color:#BFDAD6;
+    margin:0 0 4px; display:block;
+  }
+  .hero-copy h1{ font-size:2.1rem; max-width:14ch; }
+  .hero-copy p.lead{ font-size:1.05rem; color:#D9E8E6; max-width:46ch; }
+  .credential-chip{
+    display:inline-block; border:1px solid var(--line); border-radius:30px;
+    padding:7px 16px; font-size:0.82rem; color:#CFE3E1; margin-bottom:22px;
+  }
+  .btn-row{ display:flex; flex-wrap:wrap; gap:14px; margin-top:26px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 24px; border-radius:30px; text-decoration:none;
+    font-size:0.95rem; font-weight:500; border:1px solid transparent;
+  }
+  .btn-primary{ background:var(--rose); color:#fff; }
+  .btn-secondary{ background:transparent; color:var(--cream-text); border-color:var(--line); }
+  .btn-instagram{
+    background:linear-gradient(45deg,#F09433,#E6683C,#DC2743,#CC2366,#BC1888);
+    color:#fff;
+  }
+  .btn-instagram:hover{ filter:brightness(1.08); }
+  .hero-photo{
+    position:relative; justify-self:center;
+  }
+  .hero-photo .halo{
+    position:absolute; top:50%; left:50%;
+    width:135%; aspect-ratio:1;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(113,234,177,0.20) 0%, rgba(244,241,234,0.06) 55%, transparent 72%);
+    border-radius:50%;
+    z-index:0;
+  }
+  .ecg-ring{
+    position:absolute; top:50%; left:50%;
+    width:118%; aspect-ratio:1;
+    transform:translate(-50%,-50%);
+    z-index:1; pointer-events:none;
+    overflow:visible;
+  }
+  .ecg-ring path.base{
+    fill:none; stroke:rgba(113,234,177,0.16); stroke-width:1.6;
+    stroke-linecap:round; stroke-linejoin:round;
+  }
+  .ecg-ring path.live{
+    fill:none; stroke:#71EAB1;
+    stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round;
+    stroke-dasharray:0.03 0.09 0.05 0.83;
+    stroke-dashoffset:0;
+    animation:ecgSweep 5s linear infinite;
+    filter:drop-shadow(0 0 4px rgba(113,234,177,0.75));
+  }
+  .ecg-ring .tick{
+    stroke:rgba(113,234,177,0.12); stroke-width:1;
+  }
+  .ecg-ring path.live{
+    animation:ecgSweep 5s linear infinite, liveGlow 5s ease-in-out infinite;
+  }
+  .ecg-pulse{
+    position:absolute; top:50%; left:50%;
+    width:126%; aspect-ratio:1;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(113,234,177,0.35) 0%, rgba(113,234,177,0.09) 45%, transparent 70%);
+    filter:blur(7px);
+    z-index:1; pointer-events:none;
+    animation:pulseGlow 5s ease-in-out infinite;
+  }
+  @keyframes ecgSweep{ to{ stroke-dashoffset:-1; } }
+  @keyframes liveGlow{
+    0%,100%{ filter:drop-shadow(0 0 3px rgba(113,234,177,0.55)); }
+    50%{ filter:drop-shadow(0 0 10px rgba(113,234,177,0.95)); }
+  }
+  @keyframes pulseGlow{
+    0%,100%{ opacity:0.3; transform:translate(-50%,-50%) scale(1); }
+    50%{ opacity:0.85; transform:translate(-50%,-50%) scale(1.05); }
+  }
+  .hero-photo img{
+    position:relative; z-index:1;
+    width:270px; border-radius:50% 50% 46% 46% / 55% 55% 45% 45%;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.5);
+    border:6px solid rgba(244,241,234,0.92);
+    outline:1px solid rgba(201,123,138,0.55);
+  }
+  .hero-photo .badge{
+    position:absolute; z-index:2;
+    bottom:8px; left:50%;
+    transform:translateX(-50%);
+    background:var(--rose); color:#fff;
+    font-family:'Caveat',cursive; font-size:1.15rem;
+    padding:7px 18px; border-radius:30px;
+    border:2px solid rgba(244,241,234,0.9);
+    box-shadow:0 10px 22px -8px rgba(0,0,0,0.45);
+    white-space:nowrap;
+  }
+  @media(min-width:760px){
+    .hero .wrap{ grid-template-columns:1.15fr 0.85fr; }
+    .hero-copy h1{ font-size:2.7rem; }
+    .hero-photo img{ width:320px; }
+  }
+
+  /* ===== SECTION shared ===== */
+  section{ padding:64px 0; }
+  .eyebrow-line{
+    display:flex; align-items:center; gap:14px; margin-bottom:10px;
+  }
+  .eyebrow-line svg{ flex-shrink:0; }
+  .section-head h2{ font-size:1.7rem; color:var(--teal-deep); }
+  .section-head p.sub{ max-width:52ch; color:#4A5C5D; }
+
+  /* ===== ABOUT ===== */
+  .about{ background:var(--cream); }
+  .about .grid{
+    display:grid; grid-template-columns:1fr; gap:36px; align-items:start; margin-top:30px;
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap:10px; margin:16px 0 20px; }
+  .chip{
+    background:var(--teal-soft); color:var(--teal-deep); font-size:0.82rem;
+    padding:6px 14px; border-radius:20px;
+  }
+  .quote-block{
+    border-left:3px solid var(--rose); padding-left:20px; margin-top:24px;
+  }
+  .quote-block p{
+    font-family:'Caveat',cursive; font-size:1.5rem; color:var(--teal-deep);
+    margin:0; line-height:1.3;
+  }
+  .about-offer{
+    margin-top:28px; background:#fff; border:1px solid #E4DFD3;
+    border-radius:16px; padding:24px;
+  }
+  .about-offer h4{
+    font-family:'Fraunces',serif; font-size:1.05rem; color:var(--teal-deep);
+    margin:0 0 16px;
+  }
+  .offer-item{
+    display:flex; gap:14px; padding:14px 0;
+    border-top:1px solid #ECE7DB;
+  }
+  .offer-item:first-of-type{ border-top:none; padding-top:0; }
+  .offer-icon{ font-size:1.5rem; flex-shrink:0; margin-top:2px; }
+  .offer-item b{ display:block; font-size:0.95rem; color:var(--ink); margin-bottom:2px; }
+  .offer-item p{ margin:0; font-size:0.88rem; color:#4A5C5D; }
+  @media(min-width:800px){
+    .about .grid{ grid-template-columns:1fr 1fr; }
+  }
+  .clinic-images{
+    display:grid; grid-template-columns:1fr; gap:18px 26px;
+    max-width:920px; margin:44px auto 0;
+  }
+  .clinic-img{ display:flex; flex-direction:column; }
+  .clinic-img figure{
+    margin:0; border-radius:18px; overflow:hidden; position:relative;
+    border:1px solid #E4DFD3; background:#fff;
+    box-shadow:0 20px 45px -24px rgba(10,59,69,0.4);
+  }
+  .clinic-img figure.desk{
+    aspect-ratio:3/4; max-width:440px; margin:0 auto;
+    border-radius:340px 340px 18px 18px;
+    border:10px solid #fff;
+    box-shadow:
+      0 0 0 1px #E4DFD3,
+      0 0 0 4px rgba(201,123,138,0.18),
+      0 24px 50px -26px rgba(10,59,69,0.45),
+      inset 0 0 0 1px rgba(201,123,138,0.4);
+  }
+  .clinic-img figure.sign{ aspect-ratio:16/9; }
+  .clinic-img img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .clinic-cap{
+    font-family:'Caveat',cursive; font-size:1.35rem; color:var(--rose);
+    text-align:center; margin:12px 0 0; line-height:1.2;
+  }
+  @media(min-width:760px){
+    .clinic-images{ grid-template-columns:1fr 2.37fr; align-items:center; }
+    .clinic-img figure.desk{ max-width:none; }
+  }
+
+  /* ===== FOCUS ===== */
+  .focus{ background:var(--teal-deep); color:var(--cream-text); }
+  .focus .section-head h2{ color:var(--cream-text); }
+  .focus .section-head p.sub{ color:#C7DCDA; }
+  .focus-list{
+    margin-top:38px; display:flex; flex-direction:column;
+  }
+  .focus-item{
+    display:grid; grid-template-columns:56px 1fr; gap:20px;
+    padding:26px 0; border-top:1px solid var(--line);
+  }
+  .focus-list .focus-item:last-child{ border-bottom:1px solid var(--line); }
+  .focus-icon{
+    width:56px; height:56px; border-radius:50%;
+    background:rgba(244,241,234,0.08); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .focus-icon-emoji{ font-size:1.6rem; }
+  .focus-icon-pink{ background:#C97B8A1A; border-color:#C97B8A55; }
+  .focus-item h3{ color:var(--cream-text); font-size:1.15rem; margin-bottom:2px; }
+  .focus-item .focus-sub{ font-family:'Caveat',cursive; font-size:1rem; color:#C97B8A; margin-bottom:10px; }
+  .focus-item p{ color:#C7DCDA; margin:0; max-width:52ch; font-size:0.96rem; }
+  .focus-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .focus-tag{
+    background:rgba(244,241,234,0.08); border:1px solid var(--line);
+    color:#D9E8E6; font-size:0.78rem; padding:5px 12px; border-radius:20px;
+  }
+
+  /* ===== ONLINE CONSULT ===== */
+  .consult{ background:var(--rose); color:#fff; }
+  .consult .section-head h2{ color:#fff; }
+  .consult .section-head p.sub{ color:#FBEAEC; }
+  .pill-row{ display:flex; flex-wrap:wrap; gap:12px; margin:28px 0 32px; }
+  .pill{
+    background:rgba(255,255,255,0.16); border:1px solid rgba(255,255,255,0.35);
+    padding:10px 18px; border-radius:30px; font-size:0.88rem;
+  }
+  .consult-cta{
+    display:flex; flex-wrap:wrap; align-items:center; gap:22px;
+    background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.3);
+    padding:22px 26px; border-radius:16px;
+  }
+  .consult-cta .hours{ font-size:0.92rem; }
+  .consult-cta .hours b{ display:block; font-family:'Fraunces',serif; font-size:1.1rem; }
+
+  /* ===== CONTACT ===== */
+  .contact{ background:var(--cream); }
+  .contact-grid{
+    display:grid; grid-template-columns:1fr; gap:34px; margin-top:34px;
+  }
+  .contact-card{
+    background:#fff; border:1px solid #E4DFD3; border-radius:16px; padding:26px;
+  }
+  .contact-row{ display:flex; gap:14px; padding:12px 0; border-top:1px solid #ECE7DB; }
+  .contact-row:first-child{ border-top:none; padding-top:0; }
+  .contact-row .icon{ flex-shrink:0; color:var(--teal); }
+  .contact-row a{ text-decoration:none; color:var(--ink); }
+  .contact-row a:hover{ color:var(--rose); }
+  .map-link{
+    display:block; background:var(--teal-deep); color:var(--cream-text);
+    border-radius:16px; padding:30px; text-align:center; text-decoration:none;
+  }
+  .map-link b{ font-family:'Fraunces',serif; font-size:1.2rem; display:block; margin-bottom:6px; }
+  @media(min-width:800px){
+    .contact-grid{ grid-template-columns:1fr 1fr; }
+  }
+
+  /* ===== FAQ ===== */
+  .faq{ background:var(--teal-soft); }
+  .faq .section-head h2{ color:var(--teal-deep); }
+  .faq-list{ margin-top:30px; max-width:760px; }
+  .faq-item{
+    background:#fff; border:1px solid #E4DFD3; border-radius:14px;
+    margin-bottom:12px; overflow:hidden;
+  }
+  .faq-q{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:16px 20px; cursor:pointer; font-weight:600; font-size:0.98rem;
+    color:var(--teal-deep); background:none; border:none; width:100%;
+    text-align:left; font-family:'Fraunces',serif;
+  }
+  .faq-q .faq-toggle{
+    font-size:1.1rem; color:var(--rose); transition:transform .25s ease; flex-shrink:0;
+  }
+  .faq-item.open .faq-toggle{ transform:rotate(45deg); }
+  .faq-a{
+    display:none; padding:0 20px 18px; color:#4A5C5D; font-size:0.93rem;
+    border-top:1px solid #ECE7DB; padding-top:14px;
+  }
+  .faq-item.open .faq-a{ display:block; }
+
+  /* ===== REVIEWS ===== */
+  .reviews{ background:var(--cream); }
+  .reviews .section-head h2{ color:var(--teal-deep); }
+  .reviews-slider{
+    margin-top:34px; position:relative; max-width:740px; margin-left:auto; margin-right:auto;
+  }
+  .reviews-player{ overflow:hidden; border-radius:16px; }
+  .reviews-track{
+    display:flex; transition:transform .45s cubic-bezier(.25,.8,.25,1);
+  }
+  .review-slide{ min-width:100%; box-sizing:border-box; padding:2px; }
+  .review-card{
+    background:#fff; border:1px solid #E4DFD3; border-radius:16px;
+    padding:26px; display:flex; flex-direction:column; gap:10px; min-height:230px;
+  }
+  .review-stars{ color:#E8A23D; letter-spacing:2px; font-size:0.95rem; }
+  .review-text{ color:var(--ink); font-size:0.96rem; line-height:1.6; margin:0; flex:1; }
+  .review-name{ font-weight:600; color:var(--teal-deep); font-size:0.92rem; }
+  .review-date{ color:#9AA7A8; font-size:0.78rem; margin-top:2px; }
+  .review-empty{ color:#4A5C5D; font-size:0.95rem; padding:34px; text-align:center; }
+  .review-actions{
+    display:flex; gap:10px; margin-top:8px; padding-top:14px; border-top:1px solid #ECE7DB;
+  }
+  .review-act{
+    background:none; border:1px solid #D5E3E0; border-radius:20px;
+    padding:7px 15px; font-size:0.82rem; cursor:pointer; font-family:'Inter',sans-serif;
+    color:var(--teal-deep); transition:all .15s;
+  }
+  .review-act:hover{ border-color:var(--rose); color:var(--rose); }
+  .review-act.del:hover{ border-color:#A34A5E; color:#A34A5E; }
+  .reviews-nav{
+    display:flex; align-items:center; justify-content:center; gap:18px; margin-top:22px;
+  }
+  .slide-btn{
+    width:44px; height:44px; border-radius:50%; border:1px solid #D5E3E0; background:#fff;
+    color:var(--teal-deep); font-size:1.1rem; cursor:pointer; transition:all .15s;
+    display:flex; align-items:center; justify-content:center; line-height:1;
+  }
+  .slide-btn:hover{ background:var(--rose); border-color:var(--rose); color:#fff; }
+  .slide-dots{ display:flex; gap:8px; }
+  .slide-dot{
+    width:9px; height:9px; border-radius:50%; background:#CFD8D6; border:none;
+    cursor:pointer; padding:0; transition:all .25s;
+  }
+  .slide-dot.active{ background:var(--rose); width:26px; border-radius:6px; }
+  .inline-review-edit{ display:flex; flex-direction:column; gap:10px; }
+  .inline-review-edit label{ font-size:0.85rem; font-weight:500; color:var(--teal-deep); }
+  .inline-review-edit input, .inline-review-edit textarea{
+    width:100%; padding:11px 14px; border:1px solid #D5E3E0; border-radius:10px;
+    font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; box-sizing:border-box;
+    background:#fff;
+  }
+  .inline-review-edit .edit-stars{ margin-bottom:0; }
+  .mini-star, .mini-star.on{ background:none; border:none; font-size:1.5rem; cursor:pointer; padding:0; }
+  .mini-star{ color:#CFD8D6; }
+  .mini-star.on{ color:#E8A23D; }
+  .inline-edit-btns{ display:flex; gap:10px; margin-top:4px; }
+  .review-form-wrap{
+    background:var(--teal-soft); border:1px solid #D5E3E0; border-radius:16px;
+    padding:26px; margin-top:38px; max-width:640px;
+  }
+  .review-form-wrap h3{
+    font-family:'Fraunces',serif; font-size:1.25rem; color:var(--teal-deep); margin-bottom:18px;
+  }
+  .review-form label{
+    display:block; font-size:0.9rem; font-weight:500; margin-bottom:4px; color:var(--teal-deep);
+  }
+  .review-form input, .review-form textarea{
+    width:100%; padding:12px 16px; border:1px solid #D5E3E0; border-radius:10px;
+    font-family:'Inter',sans-serif; font-size:0.95rem; outline:none; box-sizing:border-box;
+    margin-bottom:16px; background:#fff;
+  }
+  .star-input{ display:flex; gap:6px; margin-bottom:18px; }
+  .star-input button{
+    background:none; border:none; font-size:1.6rem; line-height:1; cursor:pointer;
+    color:#CFD8D6; transition:color .15s; padding:0;
+  }
+  .star-input button.selected{ color:#E8A23D; }
+  .review-form button[type=submit]{
+    background:var(--rose); color:#fff; border:none; padding:13px 32px;
+    border-radius:30px; font-size:0.95rem; font-weight:500; cursor:pointer;
+    font-family:'Inter',sans-serif;
+  }
+  .review-msg{ font-size:0.88rem; margin-top:12px; color:var(--teal-deep); }
+
+  .manage-btn-cancel:hover{ background:#A34A5E; color:#fff; }
+  .manage-btn-reschedule:hover{ background:var(--teal); color:#fff; }
+
+  footer{
+    background:var(--teal-deep); color:#9FC0BD;
+    padding:56px 0 0; font-size:0.85rem; line-height:1.7;
+  }
+  footer a{ color:#C7DCDA; text-decoration:none; transition:color .15s; }
+  footer a:hover{ color:var(--rose); }
+  .footer-grid{
+    display:grid; grid-template-columns:1fr; gap:36px;
+  }
+  .footer-brand .script{
+    font-size:1.3rem; color:#BFDAD6; margin:4px 0 10px;
+  }
+  .footer-brand p{ margin:0; max-width:34ch; color:#9FC0BD; }
+  .footer-logo{
+    height:58px; width:auto; border-radius:12px;
+    object-fit:contain; margin:0 0 10px; border:3px solid rgba(244,241,234,0.18);
+  }
+  footer h4{
+    font-family:'Fraunces',serif; font-size:0.95rem; color:var(--cream-text);
+    letter-spacing:0.04em; text-transform:uppercase; margin:0 0 16px; font-weight:600;
+  }
+  footer h4.footer-hours-title{ margin-top:0; }
+  .footer-col{ min-width:0; }
+  .footer-links{ display:flex; flex-direction:column; gap:9px; }
+  .footer-links a{ font-size:0.88rem; }
+  .footer-rows{ display:flex; flex-direction:column; gap:10px; }
+  .footer-rows .icon{ margin-right:8px; }
+  .hours-list{ display:flex; flex-direction:column; gap:0; margin:0; padding:0; }
+  .hours-list li{
+    display:flex; justify-content:space-between; align-items:baseline; gap:14px; list-style:none;
+    padding:8px 0; border-top:1px solid rgba(244,241,234,0.1); color:#C7DCDA; font-size:0.85rem;
+  }
+  .hours-list li:first-child{ border-top:none; padding-top:0; }
+  .hours-list li:last-child{ padding-bottom:0; }
+  .hours-list span{ white-space:nowrap; }
+  .hours-list b{ color:#fff; font-weight:600; font-size:0.85rem; white-space:nowrap; }
+  .footer-social{ display:flex; flex-direction:row; gap:8px; margin-top:10px; }
+  .footer-social .social-ico{
+    width:30px; height:30px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(244,241,234,0.1); border:1px solid rgba(244,241,234,0.25);
+    color:var(--cream-text); transition:all .15s; flex-shrink:0;
+  }
+  .footer-social .social-ico:hover{ background:var(--rose); border-color:var(--rose); color:#fff; }
+  .footer-social .social-ico svg{ display:block; width:16px; height:16px; }
+  .footer-bottom{
+    margin-top:44px; border-top:1px solid rgba(244,241,234,0.14);
+    padding:20px 0; text-align:center; display:flex; flex-wrap:wrap;
+    align-items:center; justify-content:center; gap:8px 18px; font-size:0.82rem;
+  }
+  @media(min-width:600px){
+    .footer-grid{ grid-template-columns:1.4fr 1fr 1fr; }
+  }
+  @media(min-width:960px){
+    .footer-grid{ grid-template-columns:2fr 1fr 1.1fr 1.1fr 1fr; }
+  }
+
+  /* ===== MOBILE OPTIMIZATIONS ===== */
+  body{ -webkit-tap-highlight-color:transparent; }
+  section[id]{ scroll-margin-top:84px; }
+  select, textarea, input, button{ font-family:inherit; }
+  @media(max-width:860px){
+    .brand img{ height:54px; width:54px; }
+    .brand-name b{ font-size:1.15rem; }
+    .brand-name span{ font-size:0.88rem; }
+    nav.wrap{ padding-top:10px; padding-bottom:10px; }
+    #mobileMenu a{ padding:13px 0; font-size:1rem; }
+  }
+  @media(max-width:640px){
+    html, body{ overflow-x:hidden; }
+    .wrap{ width:100%; max-width:100%; margin:0 auto; padding:0 18px; }
+    section{ padding:44px 0; }
+    .section-head h2{ font-size:1.45rem; }
+    .section-head p.sub{ font-size:0.95rem; }
+    .section-head{ text-align:center; }
+    .section-head .sub{ margin-left:auto; margin-right:auto; text-align:center; }
+    .eyebrow-line{ justify-content:center; }
+
+    .hero{ padding:38px 0 50px; }
+    .hero .wrap{ gap:30px; }
+    .hero-copy .kicker{ font-size:1.3rem; }
+    .hero-copy h1{ font-size:1.8rem; max-width:100%; }
+    .hero-copy p.lead{ font-size:0.98rem; max-width:100%; }
+    .credential-chip{ font-size:0.78rem; padding:6px 14px; }
+    .hero-copy{ text-align:center; }
+    .hero-copy .credential-chip{ margin-left:auto; margin-right:auto; }
+    .btn-row{ gap:10px; margin-top:22px; justify-content:center; }
+    .btn{ padding:12px 18px; font-size:0.9rem; }
+    .hero-photo{ width:auto; max-width:100%; margin:14px auto 0; padding-top:6px; }
+    .hero-photo img{ width:290px; }
+    .hero-photo .badge{ font-size:1rem; padding:6px 14px; }
+    .hero-photo .halo{ width:130%; }
+    .hero-photo .ecg-pulse{ width:124%; filter:blur(4px); }
+    .hero-photo .ecg-ring{ width:118%; }
+
+    .about .grid{ gap:26px; margin-top:24px; }
+    .about-offer{ padding:20px; max-width:100%; }
+    .quote-block p{ font-size:1.28rem; }
+    .clinic-images{ margin-top:34px; }
+    .clinic-img figure.desk{ border-width:8px; }
+    .chips{ justify-content:center; }
+
+    .focus-list{ margin-top:28px; }
+    .focus-item{ grid-template-columns:44px 1fr; gap:14px; padding:20px 0; text-align:left; }
+    .focus-icon{ width:44px; height:44px; }
+    .focus-icon-emoji{ font-size:1.3rem; }
+
+    .pill-row{ gap:8px; margin:22px 0 26px; justify-content:center; }
+    .pill{ padding:8px 14px; font-size:0.82rem; }
+    .consult-cta{ padding:18px 20px; gap:16px; }
+    .consult-cta .hours{ font-size:0.88rem; }
+
+    .contact-card{ padding:20px; word-break:break-word; overflow-wrap:break-word; max-width:100%; }
+    .contact-row{ flex-wrap:wrap; }
+    .map-link{ padding:24px 16px; word-break:break-word; }
+    .contact iframe{ height:260px; width:100%; }
+    .contact .section-head{ text-align:center; }
+    .contact-grid{ margin-top:26px; }
+
+    .faq-q{ padding:14px 16px; font-size:0.94rem; }
+    .faq-a{ font-size:0.9rem; }
+    .faq-list{ margin-left:auto; margin-right:auto; }
+    .faq .section-head, .consult .section-head{ text-align:center; }
+    .consult-cta{ justify-content:center; text-align:center; }
+
+    .review-card{ padding:20px; min-height:200px; }
+    .review-text{ font-size:0.92rem; }
+    .review-form-wrap{ padding:20px; max-width:100%; }
+    .reviews-nav{ gap:14px; }
+
+    #appointmentForm input, #appointmentForm textarea{ font-size:16px !important; }
+    #appointmentForm button[type=submit]{ width:100%; }
+    #appointmentForm button[type=submit]{
+      display:block; margin:0 auto;
+    }
+    .bookappointment .wrap{ max-width:100%; }
+    .bookappointment .contact-card{ width:100%; max-width:100%; padding:20px !important; }
+    .bookappointment .contact-card h3{ font-size:1.15rem !important; }
+    .bookappointment label{ font-size:0.88rem !important; }
+    .manage-btn-cancel, .manage-btn-reschedule{ width:100%; justify-content:center; }
+
+    footer{ padding:46px 0 0; font-size:0.8rem; }
+    footer .wrap{ padding:0 18px; }
+    .footer-logo{ height:46px; }
+    .footer-grid{ gap:30px; text-align:center; }
+    .footer-grid .footer-col{ display:flex; flex-direction:column; align-items:center; }
+    .footer-grid h4{ width:100%; text-align:center; }
+    .footer-links, .footer-rows{ align-items:center; text-align:center; }
+    .footer-social{ justify-content:center; }
+    .footer-brand .script{ text-align:center; }
+    .footer-brand p{ margin-left:auto; margin-right:auto; }
+    .footer-bottom{ margin-top:34px; padding:18px 12px; }
+    .hours-list{ align-items:stretch; width:100%; max-width:280px; }
+    .hours-list li{ font-size:0.85rem; }
+  }
+  @media(max-width:400px){
+    .hero-copy h1{ font-size:1.62rem; }
+    .hero-photo img{ width:252px; }
+    @keyframes pulseGlowMobile{
+      0%,100%{ opacity:0.3; transform:translate(-50%,-50%) scale(1); }
+      50%{ opacity:0.85; transform:translate(-50%,-50%) scale(1.02); }
+    }
+    .hero-photo .ecg-pulse{ animation:pulseGlowMobile 5s ease-in-out infinite; }
+    .btn-row{ flex-direction:column; }
+    .btn-row .btn{ width:100%; justify-content:center; }
+    .brand img{ height:46px; width:46px; }
+    .brand-name b{ font-size:1.05rem; }
+    .brand-name span{ font-size:0.8rem; }
+    .manage-btn-cancel, .manage-btn-reschedule{ justify-content:center; }
+    .consult-cta{ padding:16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="brand" style="text-decoration:none;">
+      <img src="assets/logo.jpg" alt="Her & Little Wellness Centre logo" style="height:74px;width:auto;border-radius:14px;object-fit:contain;border:3px solid rgba(244,241,234,0.35);">
+      <span class="brand-name"><b>Her &amp; Little</b><span>Wellness Centre</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#focus">Focus Areas</a></li>
+      <li><a href="#online">Online Consult</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="tel:+919677480825">Call Now</a>
+    <button class="menu-btn" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </nav>
+  <div id="mobileMenu">
+    <a href="#about">About</a>
+    <a href="#focus">Focus Areas</a>
+    <a href="#online">Online Consult</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+    <a href="tel:+919677480825">Call +91 96774 80825</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="kicker">Care for Her, Care for Them... Care for Life</span>
+      <h1>Your health deserves to be heard, understood &amp; cared for.</h1>
+      <p class="lead">Gentle, personalised homoeopathic care for women, children and the whole family — in Neyyattinkara and online across Kerala.</p>
+      <span class="credential-chip">Dr. Vismaya V Nair &middot; BHMS &middot; Reg. No. 16522</span>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="https://wa.me/919677480825?text=Hi%20Dr.%20Vismaya%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">Book on WhatsApp</a>
+        <a class="btn btn-secondary" href="tel:+919677480825">Call +91 96774 80825</a>
+        <a class="btn btn-instagram" href="https://instagram.com/dr.vismaya.her.little.homoeo.care" target="_blank" rel="noopener">Follow on Instagram</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <span class="halo" aria-hidden="true"></span>
+      <span class="ecg-pulse" aria-hidden="true"></span>
+      <img src="assets/doctor.jpg" alt="Dr. Vismaya V Nair, BHMS Homoeopathic Physician">
+      <span class="badge">BHMS &middot; Homoeopathy</span>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow-line">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0F6274" stroke-width="1.4"><path d="M12 3c-1 3-4 4-4 8a4 4 0 0 0 8 0c0-4-3-5-4-8Z"/><path d="M12 15v6"/></svg>
+        <h2>Our Homoeopathy Clinic</h2>
+      </div>
+      <p class="sub">Gentle, individualised &amp; holistic care — where every patient is understood as a whole person.</p>
+    </div>
+    <div class="grid">
+      <div>
+        <p>Welcome to <strong>Vismaya&rsquo;s Her &amp; Little Wellness Centre</strong>, a dedicated homoeopathic healthcare centre focused on providing gentle, individualised and holistic care for women, children and lifestyle-related health concerns.</p>
+        <p>Led by <strong>Dr. Vismaya V Nair (BHMS)</strong>, our approach focuses on understanding each patient as an individual and providing personalised homoeopathic care with compassion and attention. Our practice is built around a simple belief: care should feel heard, not hurried.</p>
+        <p>Whether you visit our clinic in Neyyattinkara or consult online, we bring the same depth of attention to every appointment — because your health deserves to be treated as a complete picture, not just a list of symptoms.</p>
+        <div class="chips">
+          <span class="chip">BHMS</span>
+          <span class="chip">Homoeopathic Physician</span>
+          <span class="chip">Reg. No. 16522</span>
+          <span class="chip">Homoeopathy</span>
+          <span class="chip">Women</span>
+          <span class="chip">Children</span>
+          <span class="chip">Lifestyle Diseases</span>
+        </div>
+      </div>
+      <div>
+        <div class="quote-block">
+          <p>&ldquo;Your health deserves to be heard, understood &amp; cared for.&rdquo;</p>
+        </div>
+        <div class="about-offer">
+          <h4>What We Offer</h4>
+          <div class="offer-item">
+            <span class="offer-icon">🌸</span>
+            <div>
+              <b>Women&rsquo;s Health</b>
+              <p>PCOD/PCOS, thyroid-related concerns, menstrual problems and other women&rsquo;s health issues.</p>
+            </div>
+          </div>
+          <div class="offer-item">
+            <span class="offer-icon">👶</span>
+            <div>
+              <b>Child Healthcare</b>
+              <p>Supportive and individualised care for common childhood health concerns.</p>
+            </div>
+          </div>
+          <div class="offer-item">
+            <span class="offer-icon">🌿</span>
+            <div>
+              <b>Lifestyle &amp; General Health</b>
+              <p>Personalised care for various lifestyle-related and chronic health concerns.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clinic-images">
+      <div class="clinic-img">
+        <figure class="desk">
+          <img src="assets/doctor-desk.jpg" alt="Consultation desk at Dr. Vismaya's Her &amp; Little Wellness Centre" loading="lazy">
+        </figure>
+        <p class="clinic-cap">Our consultation room</p>
+      </div>
+      <div class="clinic-img">
+        <figure class="sign">
+          <img src="assets/clinic-signage.jpg" alt="Her &amp; Little Wellness Centre clinic signage in Neyyattinkara" loading="lazy">
+        </figure>
+        <p class="clinic-cap">Her &amp; Little, Neyyattinkara</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="focus" id="focus">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow-line">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C97B8A" stroke-width="1.4"><circle cx="12" cy="12" r="8.5"/></svg>
+        <h2>What I focus on</h2>
+      </div>
+      <p class="sub">Three areas where personalised homoeopathy makes the most difference.</p>
+    </div>
+    <div class="focus-list">
+      <div class="focus-item">
+        <div class="focus-icon focus-icon-emoji">
+          🌸
+        </div>
+        <div>
+          <h3>Women&rsquo;s Health</h3>
+          <div class="focus-sub">Hormonal Balance &bull; Wellness at Every Stage</div>
+          <div class="focus-tags">
+            <span class="focus-tag">PCOD / PCOS (PMOS)</span>
+            <span class="focus-tag">Thyroid Disorders</span>
+            <span class="focus-tag">Menstrual Irregularities</span>
+            <span class="focus-tag">Fertility &amp; Pregnancy Care</span>
+            <span class="focus-tag">Menopause Support</span>
+            <span class="focus-tag">Postnatal Care</span>
+            <span class="focus-tag">General Women&rsquo;s Wellness</span>
+          </div>
+        </div>
+      </div>
+      <div class="focus-item">
+        <div class="focus-icon focus-icon-emoji">
+          👶
+        </div>
+        <div>
+          <h3>Child Health Care</h3>
+          <div class="focus-sub">Healthy Children, Brighter Tomorrows</div>
+          <div class="focus-tags">
+            <span class="focus-tag">Growth &amp; Development</span>
+            <span class="focus-tag">Recurrent Infections</span>
+            <span class="focus-tag">Digestive Issues</span>
+            <span class="focus-tag">Allergies &amp; Skin Conditions</span>
+            <span class="focus-tag">Behavioural Concerns</span>
+            <span class="focus-tag">Immunity Building</span>
+          </div>
+        </div>
+      </div>
+      <div class="focus-item">
+        <div class="focus-icon focus-icon-emoji">
+          🌿
+        </div>
+        <div>
+          <h3>Lifestyle Health</h3>
+          <div class="focus-sub">Prevent &bull; Balance &bull; Live Better</div>
+          <div class="focus-tags">
+            <span class="focus-tag">Diabetes, Hypertension, High Cholesterol, Obesity</span>
+            <span class="focus-tag">Digestive Health (Acidity, IBS, Constipation)</span>
+            <span class="focus-tag">Stress &amp; Anxiety</span>
+            <span class="focus-tag">Sleep Issues</span>
+            <span class="focus-tag">Skin &amp; Hair Concerns</span>
+            <span class="focus-tag">General Well-being &amp; Immunity</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bookappointment" id="appointment" style="background:var(--teal-soft);">
+  <div class="wrap" style="max-width:760px;">
+    <div class="section-head" style="text-align:center;">
+      <h2>Book Your Appointment</h2>
+      <p class="sub" style="margin:0 auto;">Fill in your details and we&rsquo;ll connect with you on WhatsApp to confirm your slot.</p>
+    </div>
+    <div class="contact-card" style="margin-top:34px;background:#fff;border:1px solid #E4DFD3;border-radius:16px;padding:26px;">
+      <h3 style="font-family:'Fraunces',serif;font-size:1.3rem;color:var(--teal-deep);margin-bottom:20px;">Patient Details</h3>
+      <form id="appointmentForm" onsubmit="handleSubmit(event)">
+        <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:0.9rem;font-weight:500;margin-bottom:4px;">Your Name *</label>
+          <input type="text" name="name" required placeholder="Enter your full name" style="width:100%;padding:12px 16px;border:1px solid #E4DFD3;border-radius:10px;font-family:'Inter',sans-serif;font-size:0.95rem;outline:none;box-sizing:border-box;">
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:0.9rem;font-weight:500;margin-bottom:4px;">Your Age *</label>
+          <input type="number" name="age" required min="0" max="120" placeholder="Enter your age" style="width:100%;padding:12px 16px;border:1px solid #E4DFD3;border-radius:10px;font-family:'Inter',sans-serif;font-size:0.95rem;outline:none;box-sizing:border-box;">
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:0.9rem;font-weight:500;margin-bottom:4px;">Your City *</label>
+          <input type="text" name="city" required placeholder="Enter your city" style="width:100%;padding:12px 16px;border:1px solid #E4DFD3;border-radius:10px;font-family:'Inter',sans-serif;font-size:0.95rem;outline:none;box-sizing:border-box;">
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:0.9rem;font-weight:500;margin-bottom:4px;">Your Phone Number *</label>
+          <input type="tel" name="phone" required placeholder="Enter your phone number" style="width:100%;padding:12px 16px;border:1px solid #E4DFD3;border-radius:10px;font-family:'Inter',sans-serif;font-size:0.95rem;outline:none;box-sizing:border-box;">
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:0.9rem;font-weight:500;margin-bottom:4px;">Your Email <span style="font-weight:400;color:#9AA7A8;">(optional)</span></label>
+          <input type="email" name="email" placeholder="Enter your email address" style="width:100%;padding:12px 16px;border:1px solid #E4DFD3;border-radius:10px;font-family:'Inter',sans-serif;font-size:0.95rem;outline:none;box-sizing:border-box;">
+        </div>
+        <div style="margin-bottom:20px;">
+          <label style="display:block;font-size:0.9rem;font-weight:500;margin-bottom:4px;">Describe Your Problem <span style="font-weight:400;color:#9AA7A8;">(optional)</span></label>
+          <textarea name="message" rows="4" placeholder="Tell us about your concern..." style="width:100%;padding:12px 16px;border:1px solid #E4DFD3;border-radius:10px;font-family:'Inter',sans-serif;font-size:0.95rem;outline:none;resize:vertical;box-sizing:border-box;"></textarea>
+        </div>
+        <button type="submit" style="background:var(--rose);color:#fff;border:none;padding:13px 32px;border-radius:30px;font-size:0.95rem;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;">Submit</button>
+      </form>
+    </div>
+    <div class="contact-card" id="manageAppointment" style="margin-top:34px;display:none;">
+      <h3 style="font-family:'Fraunces',serif;font-size:1.3rem;color:var(--teal-deep);margin-bottom:20px;">Manage Your Appointment</h3>
+      <p style="color:#4A5C5D;margin-bottom:20px;font-size:0.95rem;">Need to cancel or reschedule? Click below to message us on WhatsApp.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;">
+        <a href="https://wa.me/919677480825?text=Hi%20Dr.%20Vismaya%2C%20I%20would%20like%20to%20CANCEL%20my%20appointment.%20Please%20let%20me%20know%20if%20you%20need%20any%20details." target="_blank" rel="noopener" class="manage-btn-cancel" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:#A34A5E;border:2px solid #A34A5E;padding:12px 24px;border-radius:30px;font-size:0.95rem;font-weight:500;text-decoration:none;transition:all .15s;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="8" y1="8" x2="16" y2="16"/><line x1="16" y1="8" x2="8" y2="16"/></svg>
+          Cancel Appointment
+        </a>
+        <a href="https://wa.me/919677480825?text=Hi%20Dr.%20Vismaya%2C%20I%20would%20like%20to%20RESCHEDULE%20my%20appointment.%20Please%20share%20available%20slots." target="_blank" rel="noopener" class="manage-btn-reschedule" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--teal);border:2px solid var(--teal);padding:12px 24px;border-radius:30px;font-size:0.95rem;font-weight:500;text-decoration:none;transition:all .15s;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Reschedule Appointment
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow-line">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C97B8A" stroke-width="1.4"><path d="M12 2l2.9 5.9 6.5 1-4.7 4.5 1.1 6.5L12 16.7l-5.8 3.2 1.1-6.5L2.6 8.9l6.5-1L12 2z"/></svg>
+        <h2>What Our Patients Say</h2>
+      </div>
+      <p class="sub">Real experiences from women, parents and families we care for.</p>
+    </div>
+    <div class="reviews-slider" id="reviewsSlider">
+      <div class="reviews-player">
+        <div class="reviews-track" id="reviewsTrack"></div>
+      </div>
+      <div class="reviews-nav">
+        <button type="button" class="slide-btn" onclick="moveReview(-1)" aria-label="Previous review">&#10094;</button>
+        <div class="slide-dots" id="reviewDots"></div>
+        <button type="button" class="slide-btn" onclick="moveReview(1)" aria-label="Next review">&#10095;</button>
+      </div>
+    </div>
+    <div class="review-form-wrap">
+      <h3>Share Your Experience</h3>
+      <form class="review-form" onsubmit="submitReview(event)">
+        <label for="revName">Your Name *</label>
+        <input type="text" id="revName" name="name" required maxlength="60" placeholder="Enter your name">
+        <label>Your Rating</label>
+        <div class="star-input" id="starInput">
+          <button type="button" onclick="setRating(1)">★</button>
+          <button type="button" onclick="setRating(2)">★</button>
+          <button type="button" onclick="setRating(3)">★</button>
+          <button type="button" onclick="setRating(4)">★</button>
+          <button type="button" onclick="setRating(5)">★</button>
+        </div>
+        <label for="revText">Your Review *</label>
+        <textarea id="revText" name="review" required rows="4" maxlength="600" placeholder="Tell us about your experience..."></textarea>
+        <button type="submit">Submit Review</button>
+        <div class="review-msg" id="reviewMsg"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How to find us</h2>
+      <p class="sub">In Neyyattinkara, or online — whichever works for you.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-row">
+          <span class="icon">📍</span>
+          <span>Venpakal, Neyyattinkara,<br>Thiruvananthapuram, Kerala &ndash; 695121</span>
+        </div>
+        <div class="contact-row">
+          <span class="icon">📞</span>
+          <a href="tel:+919677480825">+91 96774 80825</a>
+        </div>
+        <div class="contact-row">
+          <span class="icon">✉️</span>
+          <a href="mailto:dr.vismaya.her.little.homoeocare@gmail.com">dr.vismaya.her.little.homoeocare@gmail.com</a>
+        </div>
+      </div>
+      <div style="border-radius:16px;overflow:hidden;border:1px solid #E4DFD3;">
+        <iframe src="https://www.google.com/maps?q=Venpakal+Neyyattinkara+Thiruvananthapuram+Kerala+695121&output=embed" width="100%" height="320" style="border:0;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Venpakal+Neyyattinkara+Thiruvananthapuram+Kerala+695121" target="_blank" rel="noopener" style="border-radius:0;">
+          <b>Get Directions</b>
+          Open in Google Maps &rarr;
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow-line">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0F6274" stroke-width="1.4"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.2a2.6 2.6 0 1 1 4 2.2c-.7.5-1.4 1-1.4 2v.6"/><circle cx="12" cy="17.5" r=".3" fill="#0F6274" stroke="none"/></svg>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <p class="sub">Common questions about homoeopathic care, consultations and what to expect.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is homoeopathy?<span class="faq-toggle">+</span></button>
+        <div class="faq-a">Homoeopathy is a gentle, natural system of medicine that treats the whole person — body and mind — by stimulating the body&rsquo;s own healing ability. Remedies are chosen individually for each patient rather than treating the condition alone.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is homoeopathy safe for children?<span class="faq-toggle">+</span></button>
+        <div class="faq-a">Yes. Homoeopathic remedies are safe, gentle and free from harsh side effects, making them well suited for children — including infants. We focus on immunity, growth, digestion and common infections in a supportive, child-friendly way.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How does an online consultation work?<span class="faq-toggle">+</span></button>
+        <div class="faq-a">You can book a video consultation via WhatsApp or phone. We discuss your health in as much detail as an in-person visit, then send your remedy and follow-up plan digitally. Online consultations are available Monday&ndash;Saturday.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How long does treatment take to show results?<span class="faq-toggle">+</span></button>
+        <div class="faq-a">It depends on the condition. Acute complaints can respond within days, while chronic or long-standing conditions may take a few weeks to several months of consistent, individualised treatment. We review progress at every follow-up.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can homoeopathy help with lifestyle diseases?<span class="faq-toggle">+</span></button>
+        <div class="faq-a">Yes. Conditions like diabetes, hypertension, high cholesterol, obesity, stress and sleep issues respond well to homoeopathic care, especially when combined with gentle lifestyle guidance. We treat the whole picture — your habits, emotions and physical symptoms together.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I book an appointment?<span class="faq-toggle">+</span></button>
+        <div class="faq-a">Simply message us on WhatsApp at +91 96774 80825 or use the appointment form below with your name, email and phone number. We&rsquo;ll confirm your slot and share consultation details right away.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="consult" id="online">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Consult from wherever you are</h2>
+      <p class="sub">Online consultations carry the same personal attention as an in-person visit.</p>
+    </div>
+    <div class="pill-row">
+      <span class="pill">Virtual Doctor Care</span>
+      <span class="pill">Remote Health Support</span>
+      <span class="pill">Verified Online Clinic</span>
+    </div>
+    <div class="consult-cta">
+      <div class="hours">
+        Online consultation available<b>Monday &ndash; Saturday</b>
+      </div>
+      <a class="btn" style="background:#fff;color:var(--rose);" href="https://wa.me/919677480825?text=Hi%20Dr.%20Vismaya%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">Message to Book &rarr;</a>
+    </div>
+    <div style="margin-top:20px;text-align:center;color:#FBEAEC;font-size:0.9rem;">
+      Follow us on Instagram: <a href="https://instagram.com/dr.vismaya.her.little.homoeo.care" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">@dr.vismaya.her.little.homoeo.care</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-brand footer-col">
+      <img class="footer-logo" src="assets/logo.jpg" alt="Her &amp; Little Wellness Centre logo">
+      <div class="script">Care for Her, Care for Them&hellip; Care for Life</div>
+      <p>Gentle, personalised homoeopathic care for women, children and the whole family &mdash; in Neyyattinkara and online across Kerala.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <div class="footer-links">
+        <a href="#about">About Us</a>
+        <a href="#focus">Focus Areas</a>
+        <a href="#appointment">Book Appointment</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#faq">FAQs</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Reach Us</h4>
+      <div class="footer-rows">
+        <span><span class="icon">📍</span>Venpakal, Neyyattinkara,<br>Thiruvananthapuram, Kerala &ndash; 695121</span>
+        <span><span class="icon">📞</span><a href="tel:+919677480825">+91 96774 80825</a></span>
+        <span><span class="icon">✉️</span><a href="mailto:dr.vismaya.her.little.homoeocare@gmail.com">dr.vismaya.her.little.homoeocare@gmail.com</a></span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Book &amp; Follow</h4>
+      <div class="footer-rows">
+        <span><span class="icon">💬</span><a href="https://wa.me/919677480825?text=Hi%20Dr.%20Vismaya%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">WhatsApp Us</a></span>
+        <span><span class="icon">🏥</span><a href="#appointment">Book an Appointment</a></span>
+        <span><span class="icon">🩺</span><a href="#online">Online Consult</a></span>
+      </div>
+      <div class="footer-social">
+        <a class="social-ico" href="https://instagram.com/dr.vismaya.her.little.homoeo.care" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="social-ico social-ico-wa" href="https://wa.me/919677480825?text=Hi%20Dr.%20Vismaya%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg class="wa-svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.06 24l1.68-6.13A11.82 11.82 0 0 1 .05 12 11.97 11.97 0 0 1 12.05 0c3.2 0 6.2 1.25 8.46 3.5a11.87 11.87 0 0 1 3.49 8.46 12.03 12.03 0 0 1-12 12.02 11.9 11.9 0 0 1-5.7-1.45L.06 24zM4.24 19.94l3.47-1.84a9.6 9.6 0 0 0 4.34 1.06 9.78 9.78 0 0 0 9.77-9.75c0-2.6-1.02-5.06-2.87-6.91a9.66 9.66 0 0 0-6.88-2.86c-5.39 0-9.77 4.38-9.77 9.76 0 1.71.44 3.37 1.28 4.86l-1.94 5.68zm14.76-6.3c-.27-.13-1.57-.77-1.81-.86-.25-.1-.43-.14-.6.13-.18.27-.7.85-.85 1.03-.16.18-.32.2-.59.07-.27-.13-1.14-.42-2.17-1.34-.8-.72-1.34-1.6-1.5-1.87-.16-.27-.02-.42.12-.55.12-.12.27-.32.4-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.47-.07-.13-.6-1.45-.83-1.98-.22-.52-.44-.45-.6-.46h-.51c-.18 0-.46.07-.7.32-.24.27-.92.9-.92 2.2 0 1.29.94 2.54 1.08 2.72.13.18 1.86 2.84 4.51 3.98.63.27 1.12.43 1.5.55.63.2 1.21.17 1.66.1.5-.08 1.57-.64 1.79-1.26.22-.62.22-1.15.15-1.26-.07-.11-.25-.18-.52-.3z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-hours-title">Clinic Hours</h4>
+      <ul class="hours-list" style="margin:0;padding:0;">
+        <li><span>Monday &ndash; Friday</span><b>10:00 - 7:30</b></li>
+        <li><span>Saturday</span><b>10:00 - 7:30</b></li>
+        <li><span>Sunday</span><b>Closed</b></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Dr. Vismaya&rsquo;s Her &amp; Little Wellness Centre &copy; 2026</span>
+    <span>Homoeopathy for women, children &amp; life.</span>
+    <a href="#top" style="font-weight:600;">Back to top &uarr;</a>
+  </div>
+</footer>
+
+<script>
+  function escapeHtml(str){
+    var div = document.createElement('div');
+    div.textContent = String(str || '');
+    return div.innerHTML;
+  }
+  var seededReviews = [
+    { id: 'seed1', name: 'Aswathy Nair', rating: 5, text: 'Dr. Vismaya took the time to really understand my hormonal issues. After a few months of treatment, my cycles are regular and I feel so much more balanced. Highly recommended.', date: 'Aug 2026' },
+    { id: 'seed2', name: 'Gopika Menon', rating: 5, text: 'My son had recurrent colds and coughs. His immunity has improved noticeably since we started treatment. The doctor is patient and very kind with children.', date: 'Jul 2026' },
+    { id: 'seed3', name: 'Anagha Suresh', rating: 5, text: 'I consulted online from abroad and the experience was just as personal as a clinic visit. Clear guidance and timely follow-ups throughout. Thank you!', date: 'Jun 2026' }
+  ];
+  function uid(){
+    return 'r' + Math.random().toString(36).slice(2,10);
+  }
+  function myToken(){
+    var t = localStorage.getItem('vismayaOwnerToken');
+    if(!t){
+      t = 'o' + Math.random().toString(36).slice(2,12) + Math.random().toString(36).slice(2,12);
+      try{ localStorage.setItem('vismayaOwnerToken', t); }catch(e){}
+    }
+    return t;
+  }
+  function isOwnReview(r){
+    return r && r.token === myToken();
+  }
+  function loadReviews(){
+    var saved = localStorage.getItem('vismayaReviews');
+    if(saved){
+      try{
+        var parsed = JSON.parse(saved);
+        if(Array.isArray(parsed)){
+          for(var i = 0; i < parsed.length; i++){
+            if(parsed[i] && !parsed[i].id) parsed[i].id = uid();
+          }
+          return parsed;
+        }
+      }catch(e){}
+    }
+    return seededReviews.slice();
+  }
+  function saveReviews(list){
+    try{ localStorage.setItem('vismayaReviews', JSON.stringify(list)); }catch(e){}
+  }
+  var reviewIndex = 0;
+  var reviewTimer = null;
+  function reviewSlideCount(){
+    var cards = document.querySelectorAll('#reviewsTrack .review-slide');
+    return cards.length;
+  }
+  function goToReview(idx){
+    var n = reviewSlideCount();
+    if(!n){ reviewIndex = 0; return; }
+    reviewIndex = ((idx % n) + n) % n;
+    var track = document.getElementById('reviewsTrack');
+    if(track) track.style.transform = 'translateX(-' + (reviewIndex * 100) + '%)';
+    var dots = document.getElementById('reviewDots');
+    if(dots){
+      var children = dots.children;
+      for(var i = 0; i < children.length; i++){
+        children[i].classList.toggle('active', i === reviewIndex);
+      }
+    }
+  }
+  function moveReview(dir){
+    goToReview(reviewIndex + dir);
+  }
+  function renderDots(n){
+    var dots = document.getElementById('reviewDots');
+    if(!dots) return;
+    dots.innerHTML = '';
+    for(var i = 0; i < n; i++){
+      var d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'slide-dot' + (i === reviewIndex ? ' active' : '');
+      d.setAttribute('aria-label', 'Go to review ' + (i + 1));
+      d.onclick = (function(idx){ return function(){ goToReview(idx); }; })(i);
+      dots.appendChild(d);
+    }
+  }
+  function stopAutoplay(){
+    if(reviewTimer){
+      clearInterval(reviewTimer);
+      reviewTimer = null;
+    }
+  }
+  function startAutoplay(){
+    stopAutoplay();
+    reviewTimer = setInterval(function(){
+      moveReview(1);
+    }, 4500);
+  }
+  function renderReviews(){
+    var list = loadReviews();
+    var track = document.getElementById('reviewsTrack');
+    if(!track) return;
+    stopAutoplay();
+    track.innerHTML = '';
+    if(!list.length){
+      track.innerHTML = '<div class="review-slide"><p class="review-empty">Be the first to share your experience.</p></div>';
+      renderDots(0);
+      reviewIndex = 0;
+      return;
+    }
+    for(var i = 0; i < list.length; i++){
+      var r = list[i];
+      var slide = document.createElement('div');
+      slide.className = 'review-slide';
+      var card = buildReviewCard(r);
+      slide.appendChild(card);
+      track.appendChild(slide);
+    }
+    if(reviewIndex >= list.length) reviewIndex = list.length - 1;
+    goToReview(reviewIndex);
+    renderDots(list.length);
+    startAutoplay();
+  }
+  function starString(rating){
+    var s = '';
+    for(var i = 0; i < 5; i++){
+      s += i < rating ? '★' : '☆';
+    }
+    return s;
+  }
+  function buildReviewCard(r){
+    var id = escapeHtml(r.id);
+    var own = isOwnReview(r);
+    var card = document.createElement('div');
+    card.className = 'review-card';
+    card.setAttribute('data-id', id);
+    var actions = own ?
+      '<div class="review-actions">' +
+        '<button type="button" class="review-act edit">&#9998; Edit</button>' +
+        '<button type="button" class="review-act del">Delete</button>' +
+      '</div>' : '';
+    card.innerHTML =
+      '<div class="review-stars">' + starString(r.rating || 5) + '</div>' +
+      '<p class="review-text">' + escapeHtml(r.text) + '</p>' +
+      '<div><div class="review-name">' + escapeHtml(r.name) + '</div>' +
+      '<div class="review-date">' + escapeHtml(r.date || '') + '</div></div>' +
+      actions;
+    if(own){
+      card.querySelector('.review-act.edit').onclick = function(){ startEdit(r.id); };
+      card.querySelector('.review-act.del').onclick = function(){ deleteReview(r.id); };
+    }
+    return card;
+  }
+  function editStarsMarkup(rating){
+    var s = '<div class="star-input edit-stars">';
+    for(var i = 1; i <= 5; i++){
+      s += '<button type="button" data-v="' + i + '"' + (i <= rating ? ' class="selected"' : '') + '>&#9733;</button>';
+    }
+    return s + '</div>';
+  }
+  function startEdit(id){
+    var list = loadReviews();
+    var item = null;
+    for(var i = 0; i < list.length; i++){
+      if(list[i].id === id){ item = list[i]; break; }
+    }
+    if(!item) return;
+    if(!isOwnReview(item)){
+      alert('You can only edit your own reviews.');
+      return;
+    }
+    var card = document.querySelector('.review-card[data-id="' + escapeHtml(id) + '"]');
+    if(!card) return;
+    var rating = item.rating || 5;
+    card.innerHTML =
+      '<div class="inline-review-edit">' +
+        '<label>Your Name</label>' +
+        '<input type="text" class="edit-name" maxlength="60" value="' + escapeHtml(item.name) + '">' +
+        '<label>Your Rating</label>' +
+        editStarsMarkup(rating) +
+        '<label>Your Review</label>' +
+        '<textarea class="edit-text" rows="4" maxlength="600">' + escapeHtml(item.text) + '</textarea>' +
+        '<div class="inline-edit-btns">' +
+          '<button type="button" class="review-act save">Save Changes</button>' +
+          '<button type="button" class="review-act cancel">Cancel</button>' +
+        '</div>' +
+      '</div>';
+    card.setAttribute('data-id', escapeHtml(id));
+    card.setAttribute('data-editing', '1');
+    var starBtns = card.querySelectorAll('.edit-stars button');
+    for(var s = 0; s < starBtns.length; s++){
+      starBtns[s].onclick = function(){
+        var v = parseInt(this.getAttribute('data-v'), 10);
+        var all = this.parentNode.querySelectorAll('button');
+        for(var k = 0; k < all.length; k++){
+          all[k].classList.toggle('selected', k < v);
+        }
+      };
+    }
+    card.querySelector('.save').onclick = function(){ saveEdit(id); };
+    card.querySelector('.cancel').onclick = function(){ renderReviews(); };
+  }
+  function saveEdit(id){
+    var card = document.querySelector('.review-card[data-id="' + escapeHtml(id) + '"]');
+    if(!card) return;
+    var name = card.querySelector('.edit-name').value.trim().slice(0, 60);
+    var text = card.querySelector('.edit-text').value.trim().slice(0, 600);
+    if(!name || !text){
+      alert('Please fill in your name and review.');
+      return;
+    }
+    var rating = 5;
+    var stars = card.querySelectorAll('.edit-stars button');
+    for(var i = 0; i < stars.length; i++){
+      if(stars[i].classList.contains('selected')) rating = parseInt(stars[i].getAttribute('data-v'), 10);
+    }
+    var list = loadReviews();
+    for(var j = 0; j < list.length; j++){
+      if(list[j].id === id){
+        list[j].name = name;
+        list[j].text = text;
+        list[j].rating = rating;
+        break;
+      }
+    }
+    saveReviews(list);
+    renderReviews();
+  }
+  function deleteReview(id){
+    var list0 = loadReviews();
+    var target = null;
+    for(var x = 0; x < list0.length; x++){
+      if(list0[x].id === id){ target = list0[x]; break; }
+    }
+    if(!target || !isOwnReview(target)){
+      alert('You can only delete your own reviews.');
+      return;
+    }
+    if(!confirm('Delete this review?')) return;
+    var list = loadReviews();
+    for(var i = 0; i < list.length; i++){
+      if(list[i].id === id){
+        list.splice(i, 1);
+        break;
+      }
+    }
+    saveReviews(list);
+    if(reviewIndex >= list.length) reviewIndex = list.length - 1;
+    renderReviews();
+  }
+  var selectedRating = 0;
+  function setRating(n){
+    selectedRating = n;
+    var btns = document.querySelectorAll('#starInput button');
+    for(var i = 0; i < btns.length; i++){
+      btns[i].classList.toggle('selected', i < selectedRating);
+    }
+  }
+  function submitReview(e){
+    e.preventDefault();
+    var name = e.target.name.value.trim().slice(0, 60);
+    var text = e.target.review.value.trim().slice(0, 600);
+    if(!name || !text){
+      var msg0 = document.getElementById('reviewMsg');
+      msg0.textContent = 'Please fill in your name and review.';
+      msg0.style.color = '#A34A5E';
+      return;
+    }
+    var list = loadReviews();
+    var now = new Date();
+    var dateStr = now.toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' });
+    list.push({ id: uid(), token: myToken(), name: name, rating: selectedRating || 5, text: text, date: dateStr });
+    saveReviews(list);
+    renderReviews();
+    e.target.reset();
+    selectedRating = 0;
+    var btns = document.querySelectorAll('#starInput button');
+    for(var i = 0; i < btns.length; i++){
+      btns[i].classList.remove('selected');
+    }
+    var msg = document.getElementById('reviewMsg');
+    msg.textContent = 'Thank you! Your review has been added.';
+    msg.style.color = '#0A3B45';
+  }
+  (function(){
+    var hero = document.querySelector('.hero-photo');
+    if(!hero) return;
+    var r = 88;
+    var N = 600;
+    function bump(center, spread, amp, u){
+      var x = (u - center) / spread;
+      return amp * Math.exp(-x * x);
+    }
+    function beat(u, at){
+      var v = 0;
+      v += bump(at - 14, 6, 2.4, u);
+      v += bump(at - 4, 4, -1.8, u);
+      v += bump(at + 6, 3, 13, u);
+      v += bump(at + 16, 4.5, -6, u);
+      v += bump(at + 30, 10, 5, u);
+      return v;
+    }
+    function radialOffset(deg){
+      return beat(deg, 60) + beat(deg, 260);
+    }
+    var d = '';
+    for(var i = 0; i <= N; i++){
+      var deg = (i / N) * 360;
+      var rad = deg * Math.PI / 180;
+      var rr = r + radialOffset(deg);
+      var x = 100 + rr * Math.sin(rad);
+      var y = 100 - rr * Math.cos(rad);
+      d += (i === 0 ? 'M' : 'L') + x.toFixed(2) + ' ' + y.toFixed(2);
+    }
+    var ns = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('class', 'ecg-ring');
+    svg.setAttribute('viewBox', '0 0 200 200');
+    svg.setAttribute('aria-hidden', 'true');
+    var grid = document.createElementNS(ns, 'g');
+    for(var t = 0; t < 72; t++){
+      var a = (t / 72) * 2 * Math.PI;
+      var line = document.createElementNS(ns, 'line');
+      line.setAttribute('class', 'tick');
+      line.setAttribute('x1', (100 + 82 * Math.sin(a)).toFixed(2));
+      line.setAttribute('y1', (100 - 82 * Math.cos(a)).toFixed(2));
+      line.setAttribute('x2', (100 + 88 * Math.sin(a)).toFixed(2));
+      line.setAttribute('y2', (100 - 88 * Math.cos(a)).toFixed(2));
+      grid.appendChild(line);
+    }
+    svg.appendChild(grid);
+    var base = document.createElementNS(ns, 'path');
+    base.setAttribute('class', 'base');
+    base.setAttribute('d', d);
+    var live = document.createElementNS(ns, 'path');
+    live.setAttribute('class', 'live');
+    live.setAttribute('d', d);
+    live.setAttribute('pathLength', '1');
+    svg.appendChild(base);
+    svg.appendChild(live);
+    hero.insertBefore(svg, hero.firstChild);
+  })();
+  renderReviews();
+  (function(){
+    var slider = document.getElementById('reviewsSlider');
+    if(slider){
+      slider.onmouseenter = function(){ stopAutoplay(); };
+      slider.onmouseleave = function(){ startAutoplay(); };
+    }
+  })();
+  function toggleFaq(btn){
+    btn.parentElement.classList.toggle('open');
+  }
+  (function(){
+    var menu = document.getElementById('mobileMenu');
+    if(menu){
+      var links = menu.querySelectorAll('a');
+      for(var i = 0; i < links.length; i++){
+        links[i].addEventListener('click', function(){
+          menu.classList.remove('open');
+        });
+      }
+    }
+  })();
+  function handleSubmit(e){
+    e.preventDefault();
+    var name = e.target.name.value.trim();
+    var age = e.target.age.value;
+    var city = e.target.city.value.trim();
+    var phone = e.target.phone.value.trim();
+    var email = e.target.email.value.trim() || 'Not provided';
+    var message = e.target.message.value.trim() || 'Not provided';
+    var text = encodeURIComponent('Appointment Request\n\nName: ' + name + '\nAge: ' + age + '\nCity: ' + city + '\nPhone: ' + phone + '\nEmail: ' + email + '\n\nProblem:\n' + message);
+    try{ localStorage.setItem('vismayaBooked', '1'); }catch(err){}
+    var manage = document.getElementById('manageAppointment');
+    if(manage) manage.style.display = 'block';
+    window.open('https://wa.me/919677480825?text=' + text, '_blank');
+  }
+  (function(){
+    try{
+      if(localStorage.getItem('vismayaBooked')){
+        var manage = document.getElementById('manageAppointment');
+        if(manage) manage.style.display = 'block';
+      }
+    }catch(e){}
+  })();
+</script>
+</body>
+</html>
