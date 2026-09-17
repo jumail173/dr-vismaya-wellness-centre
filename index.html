@@ -1068,6 +1068,9 @@
   </div>
 </footer>
 
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
 <script>
   function escapeHtml(str){
     var div = document.createElement('div');
@@ -1079,6 +1082,68 @@
     { id: 'seed2', name: 'Gopika Menon', rating: 5, text: 'My son had recurrent colds and coughs. His immunity has improved noticeably since we started treatment. The doctor is patient and very kind with children.', date: 'Jul 2026' },
     { id: 'seed3', name: 'Anagha Suresh', rating: 5, text: 'I consulted online from abroad and the experience was just as personal as a clinic visit. Clear guidance and timely follow-ups throughout. Thank you!', date: 'Jun 2026' }
   ];
+  var FIREBASE_CONFIG = {
+    apiKey: "AIzaSyC7kUOBcKmK8PDhKp3QXR--AVgCni0fXgg",
+    authDomain: "dr-vismaya-wellness-centre.firebaseapp.com",
+    databaseURL: "https://dr-vismaya-wellness-centre-default-rtdb.firebaseio.com",
+    projectId: "dr-vismaya-wellness-centre",
+    storageBucket: "dr-vismaya-wellness-centre.firebasestorage.app",
+    messagingSenderId: "695137941643",
+    appId: "1:695137941643:web:678899257390a02ca0fc8e"
+  };
+  var reviewsRef = null;
+  var reviewsCache = null;
+  var reviewsKeys = {};
+  var firebaseConfigured = false;
+  function initReviewsDb(){
+    if(!window.firebase || !FIREBASE_CONFIG || FIREBASE_CONFIG.apiKey.indexOf('PASTE_YOUR_') === 0) return;
+    try{
+      firebase.initializeApp(FIREBASE_CONFIG);
+      reviewsRef = firebase.database().ref('reviews');
+      firebaseConfigured = true;
+      reviewsRef.on('value', function(snap){
+        var list = [];
+        var keys = {};
+        snap.forEach(function(child){
+          var r = child.val();
+          if(r){
+            if(!r.id) r.id = child.key;
+            keys[child.key] = true;
+            list.push(r);
+          }
+        });
+        reviewsKeys = keys;
+        reviewsCache = list;
+        if(!list.length){
+          seededReviews.forEach(function(s){ reviewsRef.child(s.id).set(s); });
+          reviewsCache = seededReviews.slice();
+        }
+        renderReviews();
+      }, function(){
+        firebaseConfigured = false;
+        reviewsRef = null;
+        renderReviews();
+      });
+    }catch(e){
+      firebaseConfigured = false;
+      reviewsRef = null;
+    }
+  }
+  function localLoadReviews(){
+    var saved = localStorage.getItem('vismayaReviews');
+    if(saved){
+      try{
+        var parsed = JSON.parse(saved);
+        if(Array.isArray(parsed)){
+          for(var i = 0; i < parsed.length; i++){
+            if(parsed[i] && !parsed[i].id) parsed[i].id = uid();
+          }
+          return parsed;
+        }
+      }catch(e){}
+    }
+    return seededReviews.slice();
+  }
   function uid(){
     return 'r' + Math.random().toString(36).slice(2,10);
   }
@@ -1094,22 +1159,25 @@
     return r && r.token === myToken();
   }
   function loadReviews(){
-    var saved = localStorage.getItem('vismayaReviews');
-    if(saved){
-      try{
-        var parsed = JSON.parse(saved);
-        if(Array.isArray(parsed)){
-          for(var i = 0; i < parsed.length; i++){
-            if(parsed[i] && !parsed[i].id) parsed[i].id = uid();
-          }
-          return parsed;
-        }
-      }catch(e){}
-    }
-    return seededReviews.slice();
+    if(reviewsCache) return reviewsCache;
+    return localLoadReviews();
   }
   function saveReviews(list){
     try{ localStorage.setItem('vismayaReviews', JSON.stringify(list)); }catch(e){}
+    if(firebaseConfigured && reviewsRef){
+      var newKeys = {};
+      list.forEach(function(r){
+        if(r && r.id){
+          newKeys[r.id] = true;
+          reviewsRef.child(r.id).set(r);
+        }
+      });
+      for(var oldId in reviewsKeys){
+        if(reviewsKeys.hasOwnProperty(oldId) && !newKeys[oldId]){
+          reviewsRef.child(oldId).remove();
+        }
+      }
+    }
   }
   var reviewIndex = 0;
   var reviewTimer = null;
@@ -1403,6 +1471,7 @@
     svg.appendChild(live);
     hero.insertBefore(svg, hero.firstChild);
   })();
+  initReviewsDb();
   renderReviews();
   (function(){
     var slider = document.getElementById('reviewsSlider');
