@@ -1,6 +1,13 @@
 {
   "rules": {
-    ".read": true,
-    ".write": true
+    "reviews": {
+      ".read": true,
+      "$reviewId": {
+        ".write": true,
+        ".validate": "newData.hasChildren(['name', 'text', 'rating']) && newData.child('name').isString() && newData.child('name').val().length >= 1 && newData.child('name').val().length <= 60 && newData.child('text').isString() && newData.child('text').val().length >= 1 && newData.child('text').val().length <= 600 && newData.child('rating').isNumber() && newData.child('rating').val() >= 1 && newData.child('rating').val() <= 5 && (!newData.hasChild('token') || newData.child('token').isString()) && (!newData.hasChild('date') || newData.child('date').isString()) && (!newData.hasChild('id') || newData.child('id').isString())"
+      }
+    },
+    ".read": false,
+    ".write": false
   }
 }

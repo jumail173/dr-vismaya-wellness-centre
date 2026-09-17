@@ -8,18 +8,18 @@
 - Repo: https://github.com/jumail173/dr-vismaya-wellness-centre
 - Main file: `index.html` (renamed from `index (12).html`; same content, verified MD5-identical).
 - Older duplicate copies kept locally: `index (12).html`, `index (12).md`.
-- Assets in `assets/`: logo.jpg, favicon.jpg (copy of logo), doctor.jpg, doctor-desk.jpg, clinic-signage.jpg, cursor.cur.
+- Assets in `assets/`: logo.png (waifu2x 2x upscale, 366x274, replaces logo.jpg), favicon.jpg (copy of logo), doctor.jpg, doctor-desk.jpg, clinic-signage.jpg, cursor.cur.
 - Root stray files NOT referenced by the site (do not commit): `doctor.jpg`, `logo.jpg`.
 
 ## Business Details
 - Doctor: Dr. Vismaya V Nair (BHMS), Homoeopathic Physician.
-- Clinic: "Her & Little Wellness Centre", Venpakal, Neyyattinkara, Thiruvananthapuram, Kerala 695121.
+- Clinic: "Her & Little Wellness Centre", Venpakal, Athiyannur, Kerala 695123.
 - Phone: +91 96774 80825
 - WhatsApp number (used in ALL wa.me links): 919677480825
 - Email: dr.vismaya.her.little.homoeocare@gmail.com
 - Instagram: @dr.vismaya_her.little_homcare
-- Clinic hours: Mon–Fri 10:00 – 7:30, Sat 10:00 – 7:30, Sun Closed.
-- Google Maps embed URL: `https://www.google.com/maps?q=Venpakal+Neyyattinkara+Thiruvananthapuram+Kerala+695121&output=embed`
+- Clinic hours: Mon–Sat 9:30 – 6:30 (online only), Sun 9:00 – 6:30 (offline only).
+- Google Maps embed URL: `https://www.google.com/maps?q=Dr+Vismaya+V+Nair+Homeopathy+Clinic+Neyyattinkara&output=embed`; "Get Directions / Open in Google Maps" button link: `https://www.google.com/maps/search/?api=1&query=Dr+Vismaya+V+Nair+Homeopathy+Clinic+Neyyattinkara`
 
 ## Page Structure (section order)
 1. `#top` Hero — kicker, h1, lead, credential chip, CTAs (WhatsApp + Online Consult), photo w/ pulse halo.
@@ -44,8 +44,8 @@
 
 ## Reviews
 - Reviews are shared globally via **Firebase Realtime Database** (node `reviews/<reviewId>`), so every visitor sees the same reviews.
-- Project `dr-vismaya-wellness-centre`; instance `dr-vismaya-wellness-centre-default-rtdb` (us-central1), URL `https://dr-vismaya-wellness-centre-default-rtdb.firebaseio.com`. RTDB rules = public read + write (`{ ".read": true, ".write": true }`), published via `firebase.json` + `database.rules.json`.
-- Config in `FIREBASE_CONFIG` in `index.html` (~line 1085) is filled in. SDK: Firebase compat 9.23.0 via gstatic.
+- Project `dr-vismaya-wellness-centre`; instance `dr-vismaya-wellness-centre-default-rtdb` (us-central1), URL `https://dr-vismaya-wellness-centre-default-rtdb.firebaseio.com`. RTDB rules are **hardened** (2026-09-17 OWASP fix): `.read` public on `reviews` only, `.write` allowed on `reviews/<id>` only with shape validation (name 1–60, text 1–600, rating 1–5); all other paths denied. Published via `firebase.json` + `database.rules.json`.
+- Config in `FIREBASE_CONFIG` in `index.html` (~line 1085) is filled in. SDK: Firebase compat **12.9.0** via gstatic with SRI `integrity` + `crossorigin="anonymous"` on both script tags.
 - `localStorage.vismayaReviews` is kept as an offline/fallback mirror only.
 - `localStorage.vismayaOwnerToken` marks the device that owns a review so only the submitter can edit/delete it.
 - First-run behavior: if the `reviews` node is empty, the 3 seed reviews are written to the DB once.
@@ -76,6 +76,7 @@
   4. Book & Follow — WhatsApp / Book Appointment / Online Consult + `.footer-social` icon row
   5. Clinic Hours (own column, class `.footer-col` with `h4.footer-hours-title`) — `.hours-list`
 - `.footer-social` = two 30px circular SVG icon links (`.social-ico`), same cream color (`var(--cream-text)`), rose hover; WhatsApp uses same color as Instagram (NOT green).
+- `.footer-rows a{ overflow-wrap:anywhere; word-break:break-word; }` — keeps long email from overflowing into the Book & Follow (Insta/WhatsApp) column.
 - Mobile (≤640px): footer fully centered — `.footer-grid{text-align:center}`, `.footer-col{flex-direction:column;align-items:center}`, headings centered, links/rows centered, social center.
 - `.footer-bottom` — copyright + tagline + "Back to top" anchor.
 

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://dr-vismaya-wellness-centre-default-rtdb.firebaseio.com https://*.firebaseio.com wss://dr-vismaya-wellness-centre-default-rtdb.firebaseio.com wss://*.firebaseio.com https://identitytoolkit.googleapis.com https://fonts.googleapis.com https://fonts.gstatic.com; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Dr. Vismaya's Her & Little Wellness Centre | Homoeopathy in Neyyattinkara</title>
 <meta name="description" content="Dr. Vismaya V Nair (BHMS) offers gentle homoeopathic care for women, children and lifestyle diseases in Neyyattinkara, Thiruvananthapuram — in person and online.">
@@ -490,6 +491,7 @@
   .footer-links a{ font-size:0.88rem; }
   .footer-rows{ display:flex; flex-direction:column; gap:10px; }
   .footer-rows .icon{ margin-right:8px; }
+  .footer-rows a{ overflow-wrap:anywhere; word-break:break-word; }
   .hours-list{ display:flex; flex-direction:column; gap:0; margin:0; padding:0; }
   .hours-list li{
     display:flex; justify-content:space-between; align-items:baseline; gap:14px; list-style:none;
@@ -498,7 +500,26 @@
   .hours-list li:first-child{ border-top:none; padding-top:0; }
   .hours-list li:last-child{ padding-bottom:0; }
   .hours-list span{ white-space:nowrap; }
+  .hours-list .hours-val{ display:flex; align-items:center; gap:8px; }
   .hours-list b{ color:#fff; font-weight:600; font-size:0.85rem; white-space:nowrap; }
+  .hours-list i{
+    font-style:normal; font-size:0.68rem; letter-spacing:0.04em; text-transform:uppercase;
+    color:#8FB7B3; border:1px solid rgba(244,241,234,0.18); border-radius:999px;
+    padding:2px 8px; white-space:nowrap;
+  }
+  .hours-list i.pill-online{
+    color:#BDF7D4; border-color:rgba(74,222,128,0.5);
+    animation:onlineGlow 2.8s ease-in-out infinite;
+  }
+  @keyframes onlineGlow{
+    0%,100%{ color:#9FD8BC; border-color:rgba(74,222,128,0.35);
+      box-shadow:0 0 0 rgba(74,222,128,0); text-shadow:none; }
+    50%{ color:#8CFFB5; border-color:rgba(74,222,128,0.95);
+      box-shadow:0 0 10px 1px rgba(74,222,128,0.65); text-shadow:0 0 6px rgba(140,255,181,0.7); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .hours-list i.pill-online{ animation:none; color:#BDF7D4; border-color:rgba(74,222,128,0.5); }
+  }
   .footer-social{ display:flex; flex-direction:row; gap:8px; margin-top:10px; }
   .footer-social .social-ico{
     width:30px; height:30px; border-radius:50%;
@@ -615,8 +636,8 @@
     .footer-brand .script{ text-align:center; }
     .footer-brand p{ margin-left:auto; margin-right:auto; }
     .footer-bottom{ margin-top:34px; padding:18px 12px; }
-    .hours-list{ align-items:stretch; width:100%; max-width:280px; }
-    .hours-list li{ font-size:0.85rem; }
+    .hours-list{ align-items:stretch; width:100%; max-width:320px; }
+    .hours-list li{ font-size:0.85rem; flex-wrap:wrap; row-gap:6px; }
   }
   @media(max-width:400px){
     .hero-copy h1{ font-size:1.62rem; }
@@ -641,7 +662,7 @@
 <header>
   <nav class="wrap">
     <a href="#top" class="brand" style="text-decoration:none;">
-      <img src="assets/logo.jpg" alt="Her & Little Wellness Centre logo" style="height:74px;width:auto;border-radius:14px;object-fit:contain;border:3px solid rgba(244,241,234,0.35);">
+      <img src="assets/logo.png" alt="Her & Little Wellness Centre logo" style="height:74px;width:auto;border-radius:14px;object-fit:contain;border:3px solid rgba(244,241,234,0.35);">
       <span class="brand-name"><b>Her &amp; Little</b><span>Wellness Centre</span></span>
     </a>
     <ul class="nav-links">
@@ -669,7 +690,7 @@
     <div class="hero-copy">
       <span class="kicker">Care for Her, Care for Them... Care for Life</span>
       <h1>Your health deserves to be heard, understood &amp; cared for.</h1>
-      <p class="lead">Gentle, personalised homoeopathic care for women, children and the whole family — in Neyyattinkara and online across Kerala.</p>
+      <p class="lead">Gentle, personalised homoeopathic care for women, children and the whole family — in Neyyattinkara and online across India.</p>
       <span class="credential-chip">Dr. Vismaya V Nair &middot; BHMS &middot; Reg. No. 16522</span>
       <div class="btn-row">
         <a class="btn btn-primary" href="https://wa.me/919677480825?text=Hi%20Dr.%20Vismaya%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">Book on WhatsApp</a>
@@ -927,7 +948,7 @@
       <div class="contact-card">
         <div class="contact-row">
           <span class="icon">📍</span>
-          <span>Venpakal, Neyyattinkara,<br>Thiruvananthapuram, Kerala &ndash; 695121</span>
+          <span>Venpakal, Athiyannur,<br>Kerala &ndash; 695123</span>
         </div>
         <div class="contact-row">
           <span class="icon">📞</span>
@@ -939,8 +960,8 @@
         </div>
       </div>
       <div style="border-radius:16px;overflow:hidden;border:1px solid #E4DFD3;">
-        <iframe src="https://www.google.com/maps?q=Venpakal+Neyyattinkara+Thiruvananthapuram+Kerala+695121&output=embed" width="100%" height="320" style="border:0;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Venpakal+Neyyattinkara+Thiruvananthapuram+Kerala+695121" target="_blank" rel="noopener" style="border-radius:0;">
+        <iframe src="https://www.google.com/maps?q=Dr+Vismaya+V+Nair+Homeopathy+Clinic+Neyyattinkara&output=embed" width="100%" height="320" style="border:0;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Dr+Vismaya+V+Nair+Homeopathy+Clinic+Neyyattinkara" target="_blank" rel="noopener" style="border-radius:0;">
           <b>Get Directions</b>
           Open in Google Maps &rarr;
         </a>
@@ -1013,9 +1034,9 @@
 <footer>
   <div class="wrap footer-grid">
     <div class="footer-brand footer-col">
-      <img class="footer-logo" src="assets/logo.jpg" alt="Her &amp; Little Wellness Centre logo">
+      <img class="footer-logo" src="assets/logo.png" alt="Her &amp; Little Wellness Centre logo">
       <div class="script">Care for Her, Care for Them&hellip; Care for Life</div>
-      <p>Gentle, personalised homoeopathic care for women, children and the whole family &mdash; in Neyyattinkara and online across Kerala.</p>
+      <p>Gentle, personalised homoeopathic care for women, children and the whole family &mdash; in Neyyattinkara and online across India.</p>
     </div>
     <div class="footer-col">
       <h4>Quick Links</h4>
@@ -1031,7 +1052,7 @@
     <div class="footer-col">
       <h4>Reach Us</h4>
       <div class="footer-rows">
-        <span><span class="icon">📍</span>Venpakal, Neyyattinkara,<br>Thiruvananthapuram, Kerala &ndash; 695121</span>
+        <span><span class="icon">📍</span>Venpakal, Athiyannur,<br>Kerala &ndash; 695123</span>
         <span><span class="icon">📞</span><a href="tel:+919677480825">+91 96774 80825</a></span>
         <span><span class="icon">✉️</span><a href="mailto:dr.vismaya.her.little.homoeocare@gmail.com">dr.vismaya.her.little.homoeocare@gmail.com</a></span>
       </div>
@@ -1055,9 +1076,8 @@
     <div class="footer-col">
       <h4 class="footer-hours-title">Clinic Hours</h4>
       <ul class="hours-list" style="margin:0;padding:0;">
-        <li><span>Monday &ndash; Friday</span><b>10:00 - 7:30</b></li>
-        <li><span>Saturday</span><b>10:00 - 7:30</b></li>
-        <li><span>Sunday</span><b>Closed</b></li>
+        <li><span>Monday &ndash; Saturday</span><span class="hours-val"><b>9:30 - 6:30</b><i class="pill-online">Online only</i></span></li>
+        <li><span>Sunday</span><span class="hours-val"><b>9:00 - 6:30</b><i>Offline only</i></span></li>
       </ul>
     </div>
   </div>
@@ -1068,14 +1088,17 @@
   </div>
 </footer>
 
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.9.0/firebase-app-compat.js" integrity="sha384-3XWNJu2qFQ6l+dVvCdcgpGP7mp9cxB8uT+w78+fV0wyyiD0lYQ2yMt2cFZOlCcFp" crossorigin="anonymous"></script>
+<script src="https://www.gstatic.com/firebasejs/12.9.0/firebase-database-compat.js" integrity="sha384-bxthWBFbDQRHfmrJ6yGiBoCxx6xSawwY/otNj98pv8kztfxUB2XflWe0n88/0qIv" crossorigin="anonymous"></script>
 
 <script>
   function escapeHtml(str){
-    var div = document.createElement('div');
-    div.textContent = String(str || '');
-    return div.innerHTML;
+    return String(str == null ? '' : str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
   var seededReviews = [
     { id: 'seed1', name: 'Aswathy Nair', rating: 5, text: 'Dr. Vismaya took the time to really understand my hormonal issues. After a few months of treatment, my cycles are regular and I feel so much more balanced. Highly recommended.', date: 'Aug 2026' },
@@ -1259,19 +1282,25 @@
     }
     return s;
   }
+  function findReviewCard(id){
+    var cards = document.querySelectorAll('#reviewsTrack .review-card');
+    for(var i = 0; i < cards.length; i++){
+      if(cards[i].getAttribute('data-id') === id) return cards[i];
+    }
+    return null;
+  }
   function buildReviewCard(r){
-    var id = escapeHtml(r.id);
-    var own = isOwnReview(r);
     var card = document.createElement('div');
     card.className = 'review-card';
-    card.setAttribute('data-id', id);
+    card.setAttribute('data-id', r.id);
+    var own = isOwnReview(r);
     var actions = own ?
       '<div class="review-actions">' +
         '<button type="button" class="review-act edit">&#9998; Edit</button>' +
         '<button type="button" class="review-act del">Delete</button>' +
       '</div>' : '';
     card.innerHTML =
-      '<div class="review-stars">' + starString(r.rating || 5) + '</div>' +
+      '<div class="review-stars">' + starString(parseInt(r.rating, 10) || 5) + '</div>' +
       '<p class="review-text">' + escapeHtml(r.text) + '</p>' +
       '<div><div class="review-name">' + escapeHtml(r.name) + '</div>' +
       '<div class="review-date">' + escapeHtml(r.date || '') + '</div></div>' +
@@ -1300,9 +1329,9 @@
       alert('You can only edit your own reviews.');
       return;
     }
-    var card = document.querySelector('.review-card[data-id="' + escapeHtml(id) + '"]');
+    var card = findReviewCard(id);
     if(!card) return;
-    var rating = item.rating || 5;
+    var rating = parseInt(item.rating, 10) || 5;
     card.innerHTML =
       '<div class="inline-review-edit">' +
         '<label>Your Name</label>' +
@@ -1316,7 +1345,7 @@
           '<button type="button" class="review-act cancel">Cancel</button>' +
         '</div>' +
       '</div>';
-    card.setAttribute('data-id', escapeHtml(id));
+    card.setAttribute('data-id', id);
     card.setAttribute('data-editing', '1');
     var starBtns = card.querySelectorAll('.edit-stars button');
     for(var s = 0; s < starBtns.length; s++){
@@ -1332,7 +1361,7 @@
     card.querySelector('.cancel').onclick = function(){ renderReviews(); };
   }
   function saveEdit(id){
-    var card = document.querySelector('.review-card[data-id="' + escapeHtml(id) + '"]');
+    var card = findReviewCard(id);
     if(!card) return;
     var name = card.querySelector('.edit-name').value.trim().slice(0, 60);
     var text = card.querySelector('.edit-text').value.trim().slice(0, 600);

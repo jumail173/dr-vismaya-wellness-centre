@@ -1,6 +1,6 @@
 # Dr. Vismaya's Her & Little Wellness Centre
 
-A static, single-page website for **Dr. Vismaya V Nair (BHMS)** — caring for women, children and lifestyle diseases through homoeopathy in Neyyattinkara, Thiruvananthapuram, and online across Kerala.
+A static, single-page website for **Dr. Vismaya V Nair (BHMS)** — caring for women, children and lifestyle diseases through homoeopathy in Neyyattinkara, Thiruvananthapuram, and online across India.
 
 - **Live site:** https://jumail173.github.io/dr-vismaya-wellness-centre/
 - **Repo:** https://github.com/jumail173/dr-vismaya-wellness-centre
@@ -20,7 +20,7 @@ A static, single-page website for **Dr. Vismaya V Nair (BHMS)** — caring for w
 | File | Purpose |
 |------|---------|
 | `index.html` | The complete website (all CSS/JS inline) |
-| `assets/logo.jpg` | Logo (header + footer) |
+| `assets/logo.png` | Logo (header + footer) |
 | `assets/favicon.jpg` | Favicon (copy of logo) |
 | `assets/doctor.jpg` | Hero photo of Dr. Vismaya |
 | `assets/doctor-desk.jpg` | Consultation desk image |
