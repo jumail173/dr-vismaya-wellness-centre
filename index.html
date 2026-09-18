@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://dr-vismaya-wellness-centre-default-rtdb.firebaseio.com https://*.firebaseio.com wss://dr-vismaya-wellness-centre-default-rtdb.firebaseio.com wss://*.firebaseio.com https://identitytoolkit.googleapis.com https://fonts.googleapis.com https://fonts.gstatic.com; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://dr-vismaya-wellness-centre-default-rtdb.firebaseio.com https://fonts.googleapis.com https://fonts.gstatic.com; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Homoeopathy Doctor in Neyyattinkara | PCOD, Child Care, Lifestyle Diseases – Dr. Vismaya</title>
 <meta name="description" content="Dr. Vismaya V Nair (BHMS) offers gentle homoeopathic care for women, children and lifestyle diseases in Neyyattinkara, Thiruvananthapuram — in person and online.">
@@ -1238,8 +1238,7 @@
   </div>
 </footer>
 
-<script src="https://www.gstatic.com/firebasejs/12.9.0/firebase-app-compat.js" integrity="sha384-3XWNJu2qFQ6l+dVvCdcgpGP7mp9cxB8uT+w78+fV0wyyiD0lYQ2yMt2cFZOlCcFp" crossorigin="anonymous"></script>
-<script src="https://www.gstatic.com/firebasejs/12.9.0/firebase-database-compat.js" integrity="sha384-bxthWBFbDQRHfmrJ6yGiBoCxx6xSawwY/otNj98pv8kztfxUB2XflWe0n88/0qIv" crossorigin="anonymous"></script>
+
 
 <script>
   function escapeHtml(str){
@@ -1255,65 +1254,55 @@
     { id: 'seed2', name: 'Gopika Menon', rating: 5, text: 'My son had recurrent colds and coughs. His immunity has improved noticeably since we started treatment. The doctor is patient and very kind with children.', date: 'Jul 2026' },
     { id: 'seed3', name: 'Anagha Suresh', rating: 5, text: 'I consulted online from abroad and the experience was just as personal as a clinic visit. Clear guidance and timely follow-ups throughout. Thank you!', date: 'Jun 2026' }
   ];
-  var FIREBASE_CONFIG = {
-    apiKey: "AIzaSyC7kUOBcKmK8PDhKp3QXR--AVgCni0fXgg",
-    authDomain: "dr-vismaya-wellness-centre.firebaseapp.com",
-    databaseURL: "https://dr-vismaya-wellness-centre-default-rtdb.firebaseio.com",
-    projectId: "dr-vismaya-wellness-centre",
-    storageBucket: "dr-vismaya-wellness-centre.firebasestorage.app",
-    messagingSenderId: "695137941643",
-    appId: "1:695137941643:web:678899257390a02ca0fc8e"
-  };
-  var reviewsRef = null;
+  var FIREBASE_DB = "https://dr-vismaya-wellness-centre-default-rtdb.firebaseio.com";
   var reviewsCache = null;
   var reviewsKeys = {};
-  var firebaseConfigured = false;
-  function initReviewsDb(){
-    if(!window.firebase || !FIREBASE_CONFIG || FIREBASE_CONFIG.apiKey.indexOf('PASTE_YOUR_') === 0) return;
-    try{
-      firebase.initializeApp(FIREBASE_CONFIG);
-      reviewsRef = firebase.database().ref('reviews');
-      firebaseConfigured = true;
-      reviewsRef.on('value', function(snap){
+  function restSet(id, obj){
+    if(!id || !obj) return;
+    try{ fetch(FIREBASE_DB + '/reviews/' + encodeURIComponent(id) + '.json', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(obj) }); }catch(e){}
+  }
+  function restRemove(id){
+    if(!id) return;
+    try{ fetch(FIREBASE_DB + '/reviews/' + encodeURIComponent(id) + '.json', { method: 'DELETE' }); }catch(e){}
+  }
+  function seedIfEmpty(list){
+    if(list.length) return list;
+    seededReviews.forEach(function(s){ restSet(s.id, s); });
+    return seededReviews.slice();
+  }
+  function loadReviewsDb(){
+    fetch(FIREBASE_DB + '/reviews.json')
+      .then(function(res){ return res.json(); })
+      .then(function(data){
         var list = [];
         var keys = {};
-        snap.forEach(function(child){
-          var r = child.val();
-          if(r){
-            if(!r.id) r.id = child.key;
-            keys[child.key] = true;
-            list.push(r);
-          }
-        });
+        if(data && typeof data === 'object'){
+          Object.keys(data).forEach(function(k){
+            var v = data[k];
+            if(v && typeof v === 'object' && v.name){
+              if(!v.id) v.id = k;
+              keys[v.id] = true;
+              list.push(v);
+            }
+          });
+        }
         var saved = localLoadReviews();
-        if(saved && saved.length && reviewsRef){
+        if(saved && saved.length){
           saved.forEach(function(s){
             if(s && !s.id) s.id = uid();
             if(s && s.id && !keys[s.id]){
-              reviewsRef.child(s.id).set(s);
+              restSet(s.id, s);
               keys[s.id] = true;
               list.push(s);
             }
           });
         }
         reviewsKeys = keys;
-        if(!list.length){
-          seededReviews.forEach(function(s){ reviewsRef.child(s.id).set(s); });
-          reviewsCache = seededReviews.slice();
-        }else{
-          reviewsCache = list;
-        }
-        try{ localStorage.setItem('vismayaReviews', JSON.stringify(list.length ? list : seededReviews.slice())); }catch(e){}
+        reviewsCache = seedIfEmpty(list);
+        try{ localStorage.setItem('vismayaReviews', JSON.stringify(reviewsCache)); }catch(e){}
         renderReviews();
-      }, function(){
-        firebaseConfigured = false;
-        reviewsRef = null;
-        renderReviews();
-      });
-    }catch(e){
-      firebaseConfigured = false;
-      reviewsRef = null;
-    }
+      })
+      .catch(function(){ renderReviews(); });
   }
   function localLoadReviews(){
     var saved = localStorage.getItem('vismayaReviews');
@@ -1351,14 +1340,7 @@
   function saveReviews(list){
     try{ localStorage.setItem('vismayaReviews', JSON.stringify(list)); }catch(e){}
   }
-  function firebaseSet(id, obj){
-    if(!firebaseConfigured || !reviewsRef || !id || !obj) return;
-    try{ reviewsRef.child(id).set(obj); }catch(e){}
-  }
-  function firebaseRemove(id){
-    if(!firebaseConfigured || !reviewsRef || !id) return;
-    try{ reviewsRef.child(id).remove(); }catch(e){}
-  }
+  
   var reviewIndex = 0;
   var reviewTimer = null;
   function reviewSlideCount(){
@@ -1575,7 +1557,7 @@
         break;
       }
     }
-    firebaseSet(id, updated);
+    restSet(id, updated);
     saveReviews(list);
     renderReviews();
   }
@@ -1597,7 +1579,7 @@
         break;
       }
     }
-    firebaseRemove(id);
+    restRemove(id);
     saveReviews(list);
     if(reviewIndex >= list.length) reviewIndex = list.length - 1;
     renderReviews();
@@ -1625,7 +1607,7 @@
     var dateStr = now.toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' });
     var review = { id: uid(), token: myToken(), name: name, rating: selectedRating || 5, text: text, date: dateStr };
     list.push(review);
-    firebaseSet(review.id, review);
+    restSet(review.id, review);
     saveReviews(list);
     renderReviews();
     e.target.reset();
@@ -1696,7 +1678,8 @@
     svg.appendChild(live);
     hero.insertBefore(svg, hero.firstChild);
   })();
-  initReviewsDb();
+  loadReviewsDb();
+  setInterval(loadReviewsDb, 60000);
   renderReviews();
   setMapUrls();
   updateRatingLd(loadReviews());

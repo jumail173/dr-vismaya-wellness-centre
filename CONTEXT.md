@@ -8,7 +8,7 @@
 - Repo: https://github.com/jumail173/dr-vismaya-wellness-centre
 - Main file: `index.html` (renamed from `index (12).html`; same content, verified MD5-identical).
 - Older duplicate copies kept locally: `index (12).html`, `index (12).md`.
-- Assets in `assets/`: logo.png (waifu2x 2x upscale, 366x274, replaces logo.jpg), favicon.jpg (copy of logo), doctor.jpg, doctor-desk.jpg, clinic-signage.jpg, cursor.cur.
+- Assets in `assets/`: logo.png (waifu2x 2x upscale, 366x274, 85.2KB), favicon.jpg (copy of logo), doctor.webp (1254x1254, og:image), doctor-desk.webp, clinic-signage.webp, cursor.cur. Original `.jpg` files were replaced with WebP (recoverable from git commit `93a00e2`).
 - Root stray files NOT referenced by the site (do not commit): `doctor.jpg`, `logo.jpg`.
 
 ## Business Details
@@ -19,7 +19,7 @@
 - Email: dr.vismaya.her.little.homoeocare@gmail.com
 - Instagram: @dr.vismaya_her.little_homcare
 - Clinic hours: Mon–Sat 9:30 – 6:30 (online only), Sun 9:00 – 6:30 (offline only).
-- Google Maps embed URL: `https://www.google.com/maps?q=Dr+Vismaya+V+Nair+Homeopathy+Clinic+Neyyattinkara&output=embed`; "Get Directions / Open in Google Maps" button link: `https://www.google.com/maps/search/?api=1&query=Dr+Vismaya+V+Nair+Homeopathy+Clinic+Neyyattinkara`
+- Google Maps embed URL: `https://www.google.com/maps?cid=7978618599063365468&hl=en&output=embed`; "Get Directions / Open in Google Maps" button link: `https://www.google.com/maps/dir/?api=1&destination=8.38389,77.06639` (pinned coordinates).
 
 ## Page Structure (section order)
 1. `#top` Hero — kicker, h1, lead, credential chip, CTAs (WhatsApp + Online Consult), photo w/ pulse halo.
@@ -45,7 +45,9 @@
 ## Reviews
 - Reviews are shared globally via **Firebase Realtime Database** (node `reviews/<reviewId>`), so every visitor sees the same reviews.
 - Project `dr-vismaya-wellness-centre`; instance `dr-vismaya-wellness-centre-default-rtdb` (us-central1), URL `https://dr-vismaya-wellness-centre-default-rtdb.firebaseio.com`. RTDB rules are **hardened** (2026-09-17 OWASP fix): `.read` public on `reviews` only, `.write` allowed on `reviews/<id>` only with shape validation (name 1–60, text 1–600, rating 1–5); all other paths denied. Published via `firebase.json` + `database.rules.json`.
-- Config in `FIREBASE_CONFIG` in `index.html` (~line 1085) is filled in. SDK: Firebase compat **12.9.0** via gstatic with SRI `integrity` + `crossorigin="anonymous"` on both script tags.
+- Reviews are read via **plain REST fetch** (no JS SDK): `GET https://dr-vismaya-wellness-centre-default-rtdb.firebaseio.com/reviews.json` on load + every 60s (`loadReviewsDb()`), and local localStorage reconciles into the DB. Writes use REST: `PUT` to `reviews/<id>.json` (add/edit) and `DELETE` (remove).
+- Project `dr-vismaya-wellness-centre`; instance `dr-vismaya-wellness-centre-default-rtdb` (us-central1), URL `https://dr-vismaya-wellness-centre-default-rtdb.firebaseio.com`. RTDB rules are **hardened** (2026-09-17 OWASP fix): `.read` public on `reviews` only, `.write` allowed on `reviews/<id>` only with shape validation (name 1–60, text 1–600, rating 1–5); all other paths denied. Published via `firebase.json` + `database.rules.json`.
+- **The Firebase JS SDK was REMOVED (2026-09-19)** — compat 12.9.0's `on('value')` listener silently hung (no success, no error) in browsers (verified: value never fired via WebSocket or forced long-polling; DB reachable + 5 reviews via REST but page fell back to 3 seeds). CSP now allows only the REST DB URL; SDK script tags, gstatic script-src, and wss/identitytoolkit connect-src entries were removed.
 - `localStorage.vismayaReviews` is kept as an offline/fallback mirror only.
 - `localStorage.vismayaOwnerToken` marks the device that owns a review so only the submitter can edit/delete it.
 - First-run behavior: if the `reviews` node is empty, the 3 seed reviews are written to the DB once.
@@ -83,7 +85,7 @@
 ## Files & Git Notes
 - Repo root is INSIDE a huge parent repo at `C:\Users\ELCOT\Downloads` (origin = Rizqit.git). Do NOT push the whole Downloads repo. `vismaya/` is its own repo with its own origin.
 - Git identity set locally: user.name = `jumail173`, email = `jumail173@users.noreply.github.com`.
-- Commit history: initial commit `822d6b7` (site), `8b7d2a3` (README.md).
+- Commit history: initial commit `822d6b7` (site), `8b7d2a3` (README.md), `93a00e2` (security hardening, crisp logo), `85ab122` (SEO structured data, landing pages, WebP, pinned map, sitemap).
 - GitHub CLI (`gh`) is authed as `jumail173` with permissions including `repo`.
 - To push new changes: `git add index.html ...; git commit -m "..." ; git push` from `C:\Users\ELCOT\Downloads\vismaya`.
 - GitHub Pages auto-deploys from `main` (root path); live URL will rebuild within ~1–2 min after push.
@@ -100,3 +102,9 @@
 9. Footer structure attempts: hours standalone column → reverted inside Reach Us → final: hours as its own column to the LEFT of Book & Follow? NO — hours is its own 5th column to the RIGHT of Book & Follow. Grid `2fr 1fr 1.1fr 1.1fr 1fr`.
 10. Instagram/WhatsApp buttons → smaller circular SVG icons (30px/16px), side-by-side, cream color like Instagram.
 11. Mobile footer also centered.
+12. SEO: canonical + OG/Twitter on all pages, `alternateName` aligned, `sameAs` = Instagram + `https://maps.google.com/?cid=7978618599063365468`, keyword H1 + title, `priceRange: "₹₹"` on landing pages.
+13. 3 new landing pages `pcod.html`, `thyroid.html`, `menstrual.html`, `child-immunity.html` (topic FAQs, NAP, pinned map, WebP); `index.html` focus tags link to them.
+14. WebP conversion of all photos + logo.png re-encode (85.2KB); old `.jpg` files deleted from assets (in git history).
+15. Pinned map: CID embed + coordinate-`destination` directions link.
+16. `sitemap.xml` + `robots.txt` added.
+17. **Firebase SDK → plain REST** (2026-09-19): SDK `on('value')` silently hung → all browsers stuck on 3 seed reviews. Rewrote to `fetch(reviews.json)` + 60s polling; PUT/DELETE writes. Now 5 reviews render on any page that can reach the DB.
