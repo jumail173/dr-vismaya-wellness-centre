@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jumail173.github.io/dr-vismaya-wellness-centre/sitemap.xml
