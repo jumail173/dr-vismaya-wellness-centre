@@ -4,7 +4,8 @@
 
 ## Project Snapshot
 - Static single-page website (HTML + CSS + JS inline, no framework, no build step).
-- LIVE: https://jumail173.github.io/dr-vismaya-wellness-centre/
+- LIVE: **https://www.drvismayawellness.com/** (custom domain, purchased 2026-09-27 at GoDaddy). Old URL `https://jumail173.github.io/dr-vismaya-wellness-centre/` 301-redirects here. Apex `drvismayawellness.com` 301-redirects to `www`.
+- Hosting: GitHub Pages, project page, **custom domain = `www.drvismayawellness.com`** (set in repo `CNAME` + Pages settings — both must match). DNS at GoDaddy: 4 `A` @ records (185.199.108–111.153) + `www` CNAME → `jumail173.github.io` (the *user* pages domain, not `drvismayawellness.github.io`).
 - Repo: https://github.com/jumail173/dr-vismaya-wellness-centre
 - Main file: `index.html` (renamed from `index (12).html`; same content, verified MD5-identical).
 - Older duplicate copies kept locally: `index (12).html`, `index (12).md`.
@@ -112,8 +113,16 @@
 19. **Performance + accessibility** (2026-09-27): fonts trimmed (dropped unused Fraunces italic) and loaded async via `rel=preload as=style crossorigin` + `media="print"` swap + `<noscript>` fallback; hero images get explicit `width`/`height` (match real pixels, no CLS), `loading="eager"`, `fetchpriority="high"`, `decoding="async"`; below-fold images lazy. Rose deepened `#C97B8A` → `#A84E60` (5.35:1 on white), added `--rose-soft:#DB9FA9`; muted text `#5F7172`, star gold `#9C6708`, unselected star/dot `#6E8281` — all WCAG-clean. Tap targets: social 44px, stars ≥40px, slide dots 24px. Footer `h4` → `h2`; all 8 form labels associated with `for`/`id`; star rating exposed as `role="radiogroup"`/`role="radio"` with `aria-checked` kept in sync.
 20. **New assets** (2026-09-27): `logo.webp` (240×180, 4.9KB, replaces 87KB `logo.png` in nav+footer), `favicon-32.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest`, and 5 `og-*.jpg` cards. Photos downscaled: `doctor.webp` 700×700 (72→32KB), `doctor-desk.webp` 880×1173 (125→95KB), `clinic-signage.webp` 1080×605 (25→22KB). `logo.png` / `favicon.jpg` / `cursor.cur` are now unreferenced (kept on disk).
 21. Landing pages each gained a "Meet Dr. Vismaya" credentials section (`id="doctor"`) and footer links to the other condition pages.
+22. **Hero photo aligned to the h1 line** (2026-09-27): inside `@media(min-width:760px)` only, `.hero .wrap` got `align-items:start` and `.hero-photo` got `align-self:start; margin-top:42px; transform:translateX(16px)`. 42px = kicker line-box (1.5rem × 1.6) + 4px margin, so the photo's top edge is exactly level with the h1. Verified `deltaY: 0` at 761–1600px on all 5 pages; ≤760px untouched.
+23. **Custom domain migration** (2026-09-27): `CNAME` added; all 108 `jumail173.github.io` references (canonical, `og:url`, twitter, JSON-LD `@id`s, `sitemap.xml`, `robots.txt`) repointed to `https://www.drvismayawellness.com`. Pages custom domain set to `www.drvismayawellness.com`, so GitHub auto-redirects apex → www.
 
-## Verification (as of 2026-09-27)
+## Verification (as of 2026-09-27, post-migration)
+- Live re-verification against the custom domain: **57/57 checks pass** — 5 pages 200, one `h1` each, canonical + `og:url` + twitter:url correct, JSON-LD parses, all in-page anchors exist, all internal links resolve, zero legacy `github.io` references, `sitemap.xml` (5 URLs) and `robots.txt` served and pointing at the new host.
+- Old `jumail173.github.io/dr-vismaya-wellness-centre/` 301s to the custom domain; `http://` apex 301s to `www`.
+- 5 reviews still read from Firebase RTDB.
+- **Pending:** Let's Encrypt cert for `www.drvismayawellness.com` was still provisioning at last check (GitHub's job can take up to ~1h), so `https://www…` briefly serves the default `*.github.io` cert. A watcher (`%LOCALAPPDATA%\Temp\opencode\certwatch.ps1` + `certwatch.log`) polls the Pages API and turns on `https_enforced` the moment the cert is approved. Verify `cert:approved` in `gh api repos/jumail173/dr-vismaya-wellness-centre/pages` before celebrating.
+- Not done (needs the owner's Google login): Search Console property for `www.drvismayawellness.com` + sitemap resubmission.
+- PageSpeed Insights API returns `429` without a key, so Lighthouse scores are manual estimates, not measured.
 - All 5 pages: tags balanced, exactly one `h1`, no heading-level skips, all internal links/anchors resolve.
 - JSON-LD parses on every page; no duplicate `@id`; `escapeHtml` blocks attribute breakout.
 - All inline scripts pass `node --check`; rating-LD logic 17/17.
