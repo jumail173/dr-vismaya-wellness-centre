@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://drvismayawellness.com/sitemap.xml
+Sitemap: https://www.drvismayawellness.com/sitemap.xml
