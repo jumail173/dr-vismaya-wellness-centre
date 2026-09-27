@@ -8,7 +8,8 @@
 - Repo: https://github.com/jumail173/dr-vismaya-wellness-centre
 - Main file: `index.html` (renamed from `index (12).html`; same content, verified MD5-identical).
 - Older duplicate copies kept locally: `index (12).html`, `index (12).md`.
-- Assets in `assets/`: logo.png (waifu2x 2x upscale, 366x274, 85.2KB), favicon.jpg (copy of logo), doctor.webp (1254x1254, og:image), doctor-desk.webp, clinic-signage.webp, cursor.cur. Original `.jpg` files were replaced with WebP (recoverable from git commit `93a00e2`).
+- Full session record for 2026-09-19: `SESSION-LOG-2026-09-19.md` (local, do not commit).
+- Assets in `assets/`: `logo.webp` (240×180, 4.9KB — current), `doctor.webp` (700×700, 32KB), `doctor-desk.webp` (880×1173, 95KB), `clinic-signage.webp` (1080×605, 22KB), `cursor.cur`, plus `favicon-32.png` / `apple-touch-icon.png` / `icon-192.png` / `icon-512.png` / `site.webmanifest` and 5 `og-*.jpg` social cards. Unreferenced legacy files kept on disk: `logo.png`, `favicon.jpg`. Original `.jpg` photos are recoverable from git commit `93a00e2`.
 - Root stray files NOT referenced by the site (do not commit): `doctor.jpg`, `logo.jpg`.
 
 ## Business Details
@@ -46,7 +47,6 @@
 - Reviews are shared globally via **Firebase Realtime Database** (node `reviews/<reviewId>`), so every visitor sees the same reviews.
 - Project `dr-vismaya-wellness-centre`; instance `dr-vismaya-wellness-centre-default-rtdb` (us-central1), URL `https://dr-vismaya-wellness-centre-default-rtdb.firebaseio.com`. RTDB rules are **hardened** (2026-09-17 OWASP fix): `.read` public on `reviews` only, `.write` allowed on `reviews/<id>` only with shape validation (name 1–60, text 1–600, rating 1–5); all other paths denied. Published via `firebase.json` + `database.rules.json`.
 - Reviews are read via **plain REST fetch** (no JS SDK): `GET https://dr-vismaya-wellness-centre-default-rtdb.firebaseio.com/reviews.json` on load + every 60s (`loadReviewsDb()`), and local localStorage reconciles into the DB. Writes use REST: `PUT` to `reviews/<id>.json` (add/edit) and `DELETE` (remove).
-- Project `dr-vismaya-wellness-centre`; instance `dr-vismaya-wellness-centre-default-rtdb` (us-central1), URL `https://dr-vismaya-wellness-centre-default-rtdb.firebaseio.com`. RTDB rules are **hardened** (2026-09-17 OWASP fix): `.read` public on `reviews` only, `.write` allowed on `reviews/<id>` only with shape validation (name 1–60, text 1–600, rating 1–5); all other paths denied. Published via `firebase.json` + `database.rules.json`.
 - **The Firebase JS SDK was REMOVED (2026-09-19)** — compat 12.9.0's `on('value')` listener silently hung (no success, no error) in browsers (verified: value never fired via WebSocket or forced long-polling; DB reachable + 5 reviews via REST but page fell back to 3 seeds). CSP now allows only the REST DB URL; SDK script tags, gstatic script-src, and wss/identitytoolkit connect-src entries were removed.
 - `localStorage.vismayaReviews` is kept as an offline/fallback mirror only.
 - `localStorage.vismayaOwnerToken` marks the device that owns a review so only the submitter can edit/delete it.
@@ -85,7 +85,7 @@
 ## Files & Git Notes
 - Repo root is INSIDE a huge parent repo at `C:\Users\ELCOT\Downloads` (origin = Rizqit.git). Do NOT push the whole Downloads repo. `vismaya/` is its own repo with its own origin.
 - Git identity set locally: user.name = `jumail173`, email = `jumail173@users.noreply.github.com`.
-- Commit history: initial commit `822d6b7` (site), `8b7d2a3` (README.md), `93a00e2` (security hardening, crisp logo), `85ab122` (SEO structured data, landing pages, WebP, pinned map, sitemap).
+- Commit history: initial commit `822d6b7` (site), `8b7d2a3` (README.md), `93a00e2` (security hardening, crisp logo), `85ab122` (SEO structured data, landing pages, WebP, pinned map, sitemap), `db68013` (Firebase SDK → plain REST for reviews).
 - GitHub CLI (`gh`) is authed as `jumail173` with permissions including `repo`.
 - To push new changes: `git add index.html ...; git commit -m "..." ; git push` from `C:\Users\ELCOT\Downloads\vismaya`.
 - GitHub Pages auto-deploys from `main` (root path); live URL will rebuild within ~1–2 min after push.
@@ -103,8 +103,20 @@
 10. Instagram/WhatsApp buttons → smaller circular SVG icons (30px/16px), side-by-side, cream color like Instagram.
 11. Mobile footer also centered.
 12. SEO: canonical + OG/Twitter on all pages, `alternateName` aligned, `sameAs` = Instagram + `https://maps.google.com/?cid=7978618599063365468`, keyword H1 + title, `priceRange: "₹₹"` on landing pages.
-13. 3 new landing pages `pcod.html`, `thyroid.html`, `menstrual.html`, `child-immunity.html` (topic FAQs, NAP, pinned map, WebP); `index.html` focus tags link to them.
+13. Related landing pages `pcod.html`, `thyroid.html`, `menstrual.html`, `child-immunity.html` (topic FAQs, NAP, pinned map, WebP); `index.html` focus tags link to them.
 14. WebP conversion of all photos + logo.png re-encode (85.2KB); old `.jpg` files deleted from assets (in git history).
 15. Pinned map: CID embed + coordinate-`destination` directions link.
 16. `sitemap.xml` + `robots.txt` added.
 17. **Firebase SDK → plain REST** (2026-09-19): SDK `on('value')` silently hung → all browsers stuck on 3 seed reviews. Rewrote to `fetch(reviews.json)` + 60s polling; PUT/DELETE writes. Now 5 reviews render on any page that can reach the DB.
+18. **Local + technical SEO pass** (2026-09-27): per-page titles/descriptions (all 49–57 / 148–159 chars), `robots` meta, page-specific 1200×630 JPEG OG/Twitter cards, `MedicalClinic` JSON-LD expanded to 21 fields (`logo`, `hasMap`, `identifier`, `openingHours`, `availableService`, `inLanguage`, `currenciesAccepted`, `paymentAccepted`), `Physician` gains `address`+`image`, directions links, near-me copy, condition-page cross-links. Runtime `updateRatingLd()` injects live `aggregateRating`.
+19. **Performance + accessibility** (2026-09-27): fonts trimmed (dropped unused Fraunces italic) and loaded async via `rel=preload as=style crossorigin` + `media="print"` swap + `<noscript>` fallback; hero images get explicit `width`/`height` (match real pixels, no CLS), `loading="eager"`, `fetchpriority="high"`, `decoding="async"`; below-fold images lazy. Rose deepened `#C97B8A` → `#A84E60` (5.35:1 on white), added `--rose-soft:#DB9FA9`; muted text `#5F7172`, star gold `#9C6708`, unselected star/dot `#6E8281` — all WCAG-clean. Tap targets: social 44px, stars ≥40px, slide dots 24px. Footer `h4` → `h2`; all 8 form labels associated with `for`/`id`; star rating exposed as `role="radiogroup"`/`role="radio"` with `aria-checked` kept in sync.
+20. **New assets** (2026-09-27): `logo.webp` (240×180, 4.9KB, replaces 87KB `logo.png` in nav+footer), `favicon-32.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest`, and 5 `og-*.jpg` cards. Photos downscaled: `doctor.webp` 700×700 (72→32KB), `doctor-desk.webp` 880×1173 (125→95KB), `clinic-signage.webp` 1080×605 (25→22KB). `logo.png` / `favicon.jpg` / `cursor.cur` are now unreferenced (kept on disk).
+21. Landing pages each gained a "Meet Dr. Vismaya" credentials section (`id="doctor"`) and footer links to the other condition pages.
+
+## Verification (as of 2026-09-27)
+- All 5 pages: tags balanced, exactly one `h1`, no heading-level skips, all internal links/anchors resolve.
+- JSON-LD parses on every page; no duplicate `@id`; `escapeHtml` blocks attribute breakout.
+- All inline scripts pass `node --check`; rating-LD logic 17/17.
+- Contrast pairs 11/11 pass WCAG AA (stars/dots AA Large). Files valid UTF-8, no mojibake.
+- 23/23 URLs return 200 on the local server (`python -m http.server 8765`).
+- PageSpeed Insights API returns `429` without a key, so Lighthouse scores are manual estimates, not measured.
