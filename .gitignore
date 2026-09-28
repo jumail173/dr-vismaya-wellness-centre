@@ -1,0 +1,15 @@
+# Local-only files - never commit, never publish
+
+# Session logs: local memory, contain internal notes
+SESSION-LOG-*.md
+
+# Old duplicate of the homepage, kept only for reference
+index (12).html
+index (12).md
+
+# Unreferenced original photos (WebP versions in assets/ are the live ones)
+doctor.jpg
+logo.jpg
+
+# Build output
+dist/
