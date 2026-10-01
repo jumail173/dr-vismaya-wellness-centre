@@ -1,19 +1,28 @@
+# Security headers for Cloudflare Pages.
+#
+# CSP is intentionally NOT set here. The pages already carry their own
+# Content-Security-Policy <meta> tag, and a second policy here would risk
+# breaking the Firebase REST reads and the Google Maps embed.
+#
+# Keep the temporary *.pages.dev URL out of search results, so Google does not
+# index a duplicate of the site under the staging host.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+  X-Frame-Options: SAMEORIGIN
+
 /*
-  Security headers for Cloudflare Pages.
-  CSP is intentionally NOT set here - the pages already carry their own
-  Content-Security-Policy meta tag, and duplicating it would risk breaking
-  the Firebase REST reads and the Google Maps embed.
-*/
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), browsing-topics=()
 
-# Long-lived once HTTPS is proven stable. Start at 1 day, raise to 6 months.
-/*
-  Strict-Transport-Security: max-age=86400; includeSubDomains
-*/
+# HSTS is deliberately off. Enable it only once HTTPS has been stable on the
+# final host for a few weeks - un-comment both lines to turn it on.
+# /*
+#   Strict-Transport-Security: max-age=86400; includeSubDomains
+# */
 
-X-Content-Type-Options: nosniff
-Referrer-Policy: strict-origin-when-cross-origin
-X-Frame-Options: SAMEORIGIN
-Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
-
+# Asset filenames are stable rather than content-hashed, so this is a year.
+# Lower it to max-age=86400 if the photos are ever replaced under the same name.
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
