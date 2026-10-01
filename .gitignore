@@ -13,3 +13,7 @@ logo.jpg
 
 # Build output
 dist/
+
+# Cert watcher runtime files
+tools/certwatch.log
+tools/certwatch.stop
