@@ -1,9 +1,30 @@
 # Change Log — Dr. Vismaya's Her & Little Wellness Centre
 
-> Every change made so far, saved as a local markdown record (date: 2026-09-17).
-> Live site: https://jumail173.github.io/dr-vismaya-wellness-centre/
+> Every change made so far, saved as a local markdown record.
+> Live site: **https://www.drvismayawellness.com/** (Cloudflare Pages)
+> Staging: `https://dr-vismaya-wellness-centre.pages.dev` (noindex)
+> Current state and next steps: [`HANDOFF.md`](HANDOFF.md)
 
 ## Latest sessions
+
+### 2026-10-05 — Migrated to Cloudflare Pages; HTTPS is live
+
+The custom domain `www.drvismayawellness.com` was set on GitHub Pages on 27 Sep 2026, but GitHub issued a certificate only for the apex and never for `www`. It sat in `state: dns_changed` for ~8 days, far past GitHub's documented 24h window, and could not be escalated (the account is on GitHub **Free**, and GitHub only shows the support form to paid accounts). Migrated to Cloudflare Pages instead.
+
+1. **Live now** at `https://www.drvismayawellness.com` — valid cert `CN=www.drvismayawellness.com`, issuer `WE1, O=Google Trust Services`, valid to 3 Jan 2027. The 8-day outage is over.
+2. Cloudflare Pages project `dr-vismaya-wellness-centre` created as a **Direct Upload** project (account `19030ecd277908dc091dc72862970772`), `dist/` uploaded, production branch `main`.
+3. DNS: only the `www` CNAME changed, `jumail173.github.io` → `dr-vismaya-wellness-centre.pages.dev`. **The 4 apex `A` records and the GoDaddy nameservers were never touched** — this is why Pages was chosen over Workers, which would have required a full nameserver migration.
+4. Full suite passes **62/62 over real HTTPS** (`node tools\verify-live.js https://www.drvismayawellness.com`). It is 62 rather than 57 because the 5 `https://` sitemap URLs now genuinely fetch instead of reporting `SKIP (TLS not ready)`.
+5. **Repo leak closed.** GitHub Pages served the entire repo directory; `database.rules.json`, `firebase.json`, `CONTEXT.md`, `README.md`, `CNAME` and `build.js` were all publicly readable. The `dist/` allowlist build means all 9 checked paths now return 404.
+6. `tools/verify-live.js` was fixed — it had no retry wrapper despite the docs requiring one, so it aborted on check 3 with `UND_ERR_CONNECT_TIMEOUT` (this host drops ~3 of 4 Node connections while `curl` succeeds).
+7. `.gitattributes` added with `eol=lf`. `core.autocrlf=true` was re-expanding `sitemap.xml` from the committed 997 bytes to 1029 on checkout, so a local `dist/` could never be byte-identical to a Cloudflare build.
+8. New `tools/verify-dist.js` — offline pre-deploy gate (42 checks: leak check, asset refs, `h1` count, JSON-LD, anchors, sitemap bytes/BOM/ASCII, ownership file, branded 404, no CRLF). Refuses to be wrong quietly; exits non-zero.
+9. New `tools/deploy-pages.js` — one-command deploy: build, verify, upload. **`git push` no longer deploys**, because this is a Direct Upload project. Connect the repo in the Cloudflare dashboard for automatic deploys.
+10. `tools/certwatch.ps1` is now **dead code** — it polled GitHub's Pages cert state and approved `https_enforced`. GitHub's cert is no longer in the path. The file is still committed but does nothing useful; safe to delete whenever.
+11. GitHub Pages custom domain + `CNAME` **kept** as a rollback. Consequence: GitHub will retry its `www` cert forever and stay `dns_changed`. Expected — do not "fix" it.
+12. Full detail, including a ~25-minute go-live outage and its cause, is in `SESSION-LOG-2026-10-05.md` (local, gitignored).
+
+**Incident worth remembering:** the custom domain was attached to Pages *before* DNS pointed at Cloudflare. Cloudflare cached the resulting `CNAME record not set` negative and never re-checked, leaving `www` serving HTTP 409 with no certificate for ~25 minutes while the apex 301'd into it. Fixed by `DELETE /accounts/{id}/pages/projects/{project}/domains/{domain_name}` — **by name, not by id** — then re-adding. DNS pointing at Cloudflare is necessary but not sufficient: only trust `status: active` *and* a real 200 over HTTPS.
 
 ### 2026-09-17 — "Online only" pill green glow
 1. Footer "Online only" badge now has a slow green glow/blink (`.hours-list i.pill-online` + `@keyframes onlineGlow`, 2.8s ease-in-out infinite: green text-shadow + box-shadow + border). Respects `prefers-reduced-motion`.
@@ -81,5 +102,12 @@
 ## Git / deploy notes
 - Repo: `C:\Users\ELCOT\Downloads\vismaya` (own repo; parents live in a huge Downloads repo — never push that).
 - Git user: jumail173 / jumail173@users.noreply.github.com.
-- Deploy: commit on `main` + `git push`; GitHub Pages rebuilds in ~1–2 min.
-- Firebase CLI authed locally; RTDB rules deplowed via `firebase.json` + `database.rules.json`.
+- **Deploy: `node tools\deploy-pages.js` with `CLOUDFLARE_API_TOKEN` set.** Pushing to `main` no longer deploys — the Pages project is Direct Upload, not Git-connected. To restore automatic deploys, connect the repo in the Cloudflare dashboard with: preset **None**, build command `node build.js`, output directory `dist`, root directory **blank**, production branch `main`.
+- Firebase CLI authed locally; RTDB rules deployed via `firebase.json` + `database.rules.json`.
+
+## Remaining work
+- [ ] Revoke the Cloudflare API token used for the 5 Oct migration (`dash.cloudflare.com/profile/api-tokens`).
+- [ ] Delete the leftover Worker `dr-vismaya-wellness-centre.amjumail2004.workers.dev` — it publishes the whole repo and returns an empty 404. Not attached to the custom domain. Needs Workers permission.
+- [ ] Search Console: per-URL *Request indexing* for the 5 URLs (sitemap already submitted 28 Sep, confirmed `Success`).
+- [ ] Google Business Profile — slowest item (verification takes days to weeks) and the main remaining lever for local search. Firebase reviews are invisible to Google.
+- [ ] HSTS — deliberately off until HTTPS has been stable for a few weeks.

@@ -143,6 +143,7 @@ CNAME               GitHub Pages custom domain - the rollback, keep it
 firebase.json  database.rules.json   never published, never commit secrets
 assets/             logo.webp, photos, og cards, icons, webmanifest
 tools/              deploy-pages.js, verify-dist.js, verify-pages.js, verify-live.js
+                    certwatch.ps1  <- DEAD CODE, GitHub cert no longer in the path
 ```
 
 Local-only, never committed: `SESSION-LOG-*.md`, `index (12).*`, `dist/`, `doctor.jpg`, `logo.jpg`.
