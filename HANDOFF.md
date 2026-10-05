@@ -1,8 +1,10 @@
 # HANDOFF — read this first
 
-**Current state: 1 Oct 2026. The site works on `http://` but not `https://`. The fix is one dashboard step away and then one DNS record.**
+**Current state: 5 Oct 2026. The site works on `http://` but not `https://`. The site-side work is finished and verified; the only thing left is a Cloudflare login.**
 
 Long history lives in [`CONTEXT.md`](CONTEXT.md) and the git history. This file is the short version, kept current.
+
+Everything that can be done without the owner's account **has** been done. Checked on 5 Oct: there are no Cloudflare credentials on this machine (no `CLOUDFLARE_API_TOKEN` env var, no `~/.wrangler`), so the Pages project cannot be created from here. That one step needs the owner.
 
 ---
 
@@ -31,7 +33,7 @@ There is already a Worker with static assets deployed at
 
 ## Why HTTPS is broken, in one paragraph
 
-The custom domain `www.drvismayawellness.com` was set on GitHub Pages on 27 Sep 2026. GitHub issued a certificate for the apex but never for `www` — it has sat in `state: dns_changed` ever since, ~5 days past GitHub's documented 24h. DNS is provably correct, `githubstatus.com` reports Pages operational, and the whole GitHub ladder (apex↔www toggle, full domain remove + re-add) has been tried and burned. **Do not touch the Pages custom domain or GoDaddy DNS again** — `dns_changed` literally means "detected a change to DNS settings", so every attempt restarts the clock. Cert requests cannot be escalated: the account is on GitHub **Free** (`gh api /user --jq .plan` → `null`), and GitHub only shows the support form to paid accounts. Migration to Cloudflare is the way out.
+The custom domain `www.drvismayawellness.com` was set on GitHub Pages on 27 Sep 2026. GitHub issued a certificate for the apex but never for `www` — it has sat in `state: dns_changed` ever since, ~8 days past GitHub's documented 24h. DNS is provably correct, `githubstatus.com` reports Pages operational, and the whole GitHub ladder (apex↔www toggle, full domain remove + re-add) has been tried and burned. **Do not touch the Pages custom domain or GoDaddy DNS again** — `dns_changed` literally means "detected a change to DNS settings", so every attempt restarts the clock. Cert requests cannot be escalated: the account is on GitHub **Free** (`gh api /user --jq .plan` → `null`), and GitHub only shows the support form to paid accounts. Migration to Cloudflare is the way out.
 
 ---
 
@@ -66,24 +68,28 @@ Order matters: adding the CNAME *before* the Pages domain is associated gives a 
 ## Verifying
 
 ```
-node build.js                                    # 24 files, ~794 KB -> dist/
+node build.js                                    # 24 files, 788 KB -> dist/
+node tools\verify-dist.js                        # offline gate - runs today, no URL needed
 node tools\verify-pages.js https://<project>.pages.dev
 node tools\verify-live.js http://www.drvismayawellness.com
 ```
 
-`verify-pages.js` is the pre-DNS gate — it must print **ALL GREEN — safe to add the custom domain and change the GoDaddy nameservers** before you touch GoDaddy. It checks all 5 pages, one `h1` each, JSON-LD, that 9 private paths 404, the sitemap is 997 bytes with no BOM, the Search Console ownership file is served, Firebase reviews load, the branded 404 is really ours, and that `_headers` was actually applied.
+`verify-dist.js` is the pre-flight and the only gate you can run **before** a `*.pages.dev` URL exists. It reads `dist/` off disk and prints `DIST IS CLEAN. Safe to upload.` / `NOT CLEAN. Do not upload.` — **42/42 pass as of 5 Oct.** It covers the leak check (`database.rules.json`, `firebase.json`, `CNAME`, `build.js`, `CONTEXT.md`, `README.md` must be absent), that every `assets/…` reference in every page actually landed, one `h1` per page, JSON-LD parses, in-page anchors resolve, `sitemap.xml` is exactly 997 bytes with no BOM and pure ASCII, the Search Console ownership file is intact, the branded 404 has one `h1` and is `noindex`, and no text file contains CRLF.
 
-`verify-live.js` is the 57-check suite for the final host. Pass it `http://` while TLS is broken; the 5 `https://` sitemap URLs report `SKIP (TLS not ready)`, which is correct at that stage.
+`verify-pages.js` is the post-deploy gate — run it against the live `*.pages.dev` URL. It must print **ALL GREEN — safe to add the custom domain and change the GoDaddy nameservers** before you touch GoDaddy. It checks all 5 pages, one `h1` each, JSON-LD, that 9 private paths 404, the sitemap is 997 bytes with no BOM, the Search Console ownership file is served, Firebase reviews load, the branded 404 is really ours, and that `_headers` was actually applied.
 
-Both retry 6 times with backoff. **This is required, not optional** — see "Gotchas".
+`verify-live.js` is the 57-check suite for the final host. Pass it `http://` while TLS is broken; the 5 `https://` sitemap URLs report `SKIP (TLS not ready)`, which is correct at that stage. **57/57 pass over http as of 5 Oct.**
+
+All three retry 6 times with backoff. **This is required, not optional** — see "Gotchas".
 
 ---
 
 ## Gotchas that will waste your time otherwise
 
 - **Do not route anyone to `support.github.com/contact`.** There is no ticket form on a Free account. The category dropdown does not exist for them. Check the plan with the API before asserting any account-level capability.
-- **Node `fetch` drops ~3 of 4 connections to this host** (`UND_ERR_CONNECT_TIMEOUT`) while `curl` succeeds every time. Any check script must retry or it reports phantom failures.
+- **Node `fetch` drops ~3 of 4 connections to this host** (`UND_ERR_CONNECT_TIMEOUT`) while `curl` succeeds every time. Any check script must retry or it reports phantom failures. This bit `verify-live.js` until 5 Oct — it aborted on the third check, so add the retry wrapper when you add a fetch.
 - **`_headers` failing to parse is silent.** No build error, no headers on the response. This already happened once — a prose comment sat inside the `/*` rule block where the grammar requires `name: value` lines. If security headers go missing after a deploy, suspect the file format before anything else.
+- **`core.autocrlf=true` used to corrupt local builds.** It expanded `sitemap.xml` from the committed 997 bytes to 1029 on checkout, so a local `dist/` was never byte-identical to a Cloudflare build. Fixed by `.gitattributes` (`* text=auto eol=lf`). If you ever see CRLF locally, check that file still exists before debugging anything else.
 - **GitHub Pages serves the entire repo directory**, so `CONTEXT.md`, `CHANGES.md`, `README.md`, `firebase.json` and `database.rules.json` are all publicly readable on the current host. The `dist/` build closes this. It is not a vulnerability — Firebase rules are enforced server-side — but do not commit anything private.
 - **`build.js` uses an allowlist**, so a file is only published if deliberately listed. If you add a public file, add it to `PAGES` or `ROOT_FILES`. Anything unlisted is reported as `NOT copied` at the end of every run.
 - **`_headers` asset caching is 1 year.** If you ever replace a photo under the same filename, browsers will keep serving the old one. Change the filename or drop it to `max-age=86400`.
@@ -127,10 +133,11 @@ index.html  pcod.html  thyroid.html  menstrual.html  child-immunity.html  404.ht
 build.js            builds dist/ from an allowlist
 _headers            Cloudflare Pages security headers + cache rules
 sitemap.xml  robots.txt  google469d11d6b2b845ea.html   (Search Console ownership)
+.gitattributes      pins LF line endings so local and Cloudflare builds match
 CNAME               GitHub Pages custom domain - keep until the migration is verified
 firebase.json  database.rules.json   never published, never commit secrets
 assets/             logo.webp, photos, og cards, icons, webmanifest
-tools/              verify-pages.js, verify-live.js, certwatch.ps1
+tools/              verify-dist.js, verify-pages.js, verify-live.js, certwatch.ps1
 ```
 
 Local-only, never committed: `SESSION-LOG-*.md`, `index (12).*`, `dist/`, `doctor.jpg`, `logo.jpg`.
