@@ -14,6 +14,10 @@ logo.jpg
 # Build output
 dist/
 
+# npm (only used for the local wrangler CLI; the site itself has no dependencies)
+node_modules/
+package-lock.json
+
 # Cert watcher runtime files
 tools/certwatch.log
 tools/certwatch.stop
