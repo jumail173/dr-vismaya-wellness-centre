@@ -12,9 +12,9 @@ Long history lives in [`CONTEXT.md`](CONTEXT.md) and the git history. This file 
 
 **Nothing is blocking deployment any more.** The site is live. Remaining work is all post-launch and none of it is urgent:
 
-1. **Revoke the deploy token** — both tokens used on 5–6 Oct (Pages deploy + Worker delete) have served their purpose. `https://dash.cloudflare.com/profile/api-tokens` → **Revoke**. Create a replacement only when you next need to deploy.
-2. **Search Console** — sitemap is already submitted. Per-URL *Request indexing* for the 5 URLs is now worth doing, because TLS finally works.
-3. **Google Business Profile** — slowest item, independent of TLS, so start it.
+1. **Revoke the deploy token** — done 6 Oct (all four tokens deleted). Create a fresh one only when you next need to deploy, then revoke it again.
+2. **Search Console** — sitemap is already submitted; per-URL *Request indexing* for all 5 URLs was submitted 6 Oct. Expect first results in ~2–7 days.
+3. **Google Business Profile** — slowest item, independent of TLS, so start it. Owner already has a profile; the website URL still needs to be added.
 
 ## How to deploy again
 
