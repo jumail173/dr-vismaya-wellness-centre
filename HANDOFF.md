@@ -1,6 +1,6 @@
 # HANDOFF — read this first
 
-**Current state: 5 Oct 2026, 23:45. THE MIGRATION IS DONE. `https://www.drvismayawellness.com` is live on Cloudflare Pages with a valid Google Trust Services certificate.**
+**Current state: 6 Oct 2026. THE MIGRATION IS DONE. `https://www.drvismayawellness.com` is live on Cloudflare Pages with a valid Google Trust Services certificate. Live suite passes 62/62 over real HTTPS (re-run 6 Oct).**
 
 The 8-day HTTPS outage caused by GitHub never issuing a `www` certificate is over. Cert: `CN=www.drvismayawellness.com`, issuer `WE1, O=Google Trust Services`, valid to 3 Jan 2027. Full suite passes **62/62 over real HTTPS**.
 
@@ -101,9 +101,18 @@ All three retry 6 times with backoff. **This is required, not optional** — see
 3. **HSTS** — deliberately off in `_headers`, and there is deliberately no `Strict-Transport-Security` header on the live host. Enable it (un-comment the two lines in `_headers`, redeploy) only after HTTPS has been stable for a few weeks.
 4. **Instagram** @dr.vismaya_her.little_homcare, 2–3 posts/week.
 
+## Done 6 Oct 2026
+
+- Live suite re-run over HTTPS: **`verify-live.js` 62/62**, `verify-dist.js` 42/42 (repo tree was clean before changes).
+- Dead code removed: `tools/certwatch.ps1` (GitHub cert no longer in the path) and the stale `certwatch5.ps1` temp copy.
+- Unreferenced assets removed from the repo: `assets/logo.png`, `assets/favicon.jpg`, `assets/cursor.cur` (all recoverable from git history; none were ever in `dist/`).
+- `README.md` asset table and live URL refreshed (it still described `.jpg` photos and the old `github.io` URL).
+
+No redeploy was needed — none of these files were published (the build uses an allowlist).
+
 ## Optional clean-up
 
-`assets/logo.png` (87 KB), `assets/favicon.jpg` and `assets/cursor.cur` are unreferenced and drop out of `dist/`, but are still committed. They cost nothing and `logo.png` is a usable fallback. Not a fix, just tidying.
+Done 6 Oct — `assets/logo.png`, `assets/favicon.jpg`, `assets/cursor.cur` and the dead `tools/certwatch.ps1` were deleted from the repo (still in git history). Nothing else is known to be unreferenced.
 
 ---
 
@@ -143,7 +152,6 @@ CNAME               GitHub Pages custom domain - the rollback, keep it
 firebase.json  database.rules.json   never published, never commit secrets
 assets/             logo.webp, photos, og cards, icons, webmanifest
 tools/              deploy-pages.js, verify-dist.js, verify-pages.js, verify-live.js
-                    certwatch.ps1  <- DEAD CODE, GitHub cert no longer in the path
 ```
 
 Local-only, never committed: `SESSION-LOG-*.md`, `index (12).*`, `dist/`, `doctor.jpg`, `logo.jpg`.

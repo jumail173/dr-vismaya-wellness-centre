@@ -2,7 +2,7 @@
 
 A static, single-page website for **Dr. Vismaya V Nair (BHMS)** — caring for women, children and lifestyle diseases through homoeopathy in Neyyattinkara, Thiruvananthapuram, and online across India.
 
-- **Live site:** https://jumail173.github.io/dr-vismaya-wellness-centre/
+- **Live site:** https://www.drvismayawellness.com/ (Cloudflare Pages)
 - **Repo:** https://github.com/jumail173/dr-vismaya-wellness-centre
 
 ---
@@ -20,12 +20,15 @@ A static, single-page website for **Dr. Vismaya V Nair (BHMS)** — caring for w
 | File | Purpose |
 |------|---------|
 | `index.html` | The complete website (all CSS/JS inline) |
-| `assets/logo.png` | Logo (header + footer) |
-| `assets/favicon.jpg` | Favicon (copy of logo) |
-| `assets/doctor.jpg` | Hero photo of Dr. Vismaya |
-| `assets/doctor-desk.jpg` | Consultation desk image |
-| `assets/clinic-signage.jpg` | Clinic signage image |
-| `assets/cursor.cur` | Custom cursor |
+| `pcod.html` `thyroid.html` `menstrual.html` `child-immunity.html` | Condition landing pages |
+| `assets/logo.webp` | Logo (header + footer) |
+| `assets/doctor.webp` | Hero photo of Dr. Vismaya |
+| `assets/doctor-desk.webp` | Consultation desk image |
+| `assets/clinic-signage.webp` | Clinic signage image |
+| `assets/og-*.jpg` | 1200×630 social cards (one per page) |
+| `assets/icon-192.png` `assets/icon-512.png` | PWA icons; `icon-512.png` is the JSON-LD `logo` |
+| `build.js` `_headers` | Cloudflare Pages build (allowlist → `dist/`) + security/cache headers |
+| `tools/` | `deploy-pages.js`, `verify-dist.js`, `verify-pages.js`, `verify-live.js` |
 
 ## Page Sections (in order)
 
