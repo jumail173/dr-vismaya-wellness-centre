@@ -12,10 +12,9 @@ Long history lives in [`CONTEXT.md`](CONTEXT.md) and the git history. This file 
 
 **Nothing is blocking deployment any more.** The site is live. Remaining work is all post-launch and none of it is urgent:
 
-1. **Revoke the deploy token** — the one used on 5 Oct has served its purpose. `https://dash.cloudflare.com/profile/api-tokens` → **Revoke**. Create a replacement only when you next need to deploy.
+1. **Revoke the deploy token** — both tokens used on 5–6 Oct (Pages deploy + Worker delete) have served their purpose. `https://dash.cloudflare.com/profile/api-tokens` → **Revoke**. Create a replacement only when you next need to deploy.
 2. **Search Console** — sitemap is already submitted. Per-URL *Request indexing* for the 5 URLs is now worth doing, because TLS finally works.
 3. **Google Business Profile** — slowest item, independent of TLS, so start it.
-4. **Delete the leftover Worker** at `*.workers.dev` — see "Left behind" below.
 
 ## How to deploy again
 
@@ -49,7 +48,7 @@ A Worker custom domain requires *"an active Cloudflare zone"* and *"you cannot c
 
 ## Left behind
 
-A **Worker** still exists at `https://dr-vismaya-wellness-centre.amjumail2004.workers.dev`. It publishes the entire repo (including `database.rules.json`, `firebase.json`, `CONTEXT.md`) and returns an empty `Content-Length: 0` 404 instead of `404.html`. It is **not** attached to the custom domain, so it does not affect the real site. It could not be deleted from here because the token granted `Cloudflare Pages: Edit` but not Workers access (403). Delete it in the dashboard: **Workers & Pages → the Worker → Delete**.
+~~A **Worker** still exists at `https://dr-vismaya-wellness-centre.amjumail2004.workers.dev`.~~ **Deleted 6 Oct 2026** via `DELETE /workers/services/dr-vismaya-wellness-centre` (token with Workers Scripts: Edit). Verified: services list empty, URL now returns 404. It was never attached to the custom domain, so the real site was unaffected while it existed.
 
 ## What actually happened on go-live
 
